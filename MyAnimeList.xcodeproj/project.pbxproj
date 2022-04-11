@@ -17,6 +17,7 @@
 		E1EC41B82801C132007DC0BB /* MyAnimeListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41B72801C132007DC0BB /* MyAnimeListUITestsLaunchTests.swift */; };
 		E1EC41C52802793A007DC0BB /* AutoLayoutDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41C42802793A007DC0BB /* AutoLayoutDSL.swift */; };
 		E1EDE0D32803FCD20095A68D /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE0D22803FCD20095A68D /* ItemCell.swift */; };
+		E1EDE0D528040A090095A68D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE0D428040A090095A68D /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		E1EC41B72801C132007DC0BB /* MyAnimeListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnimeListUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E1EC41C42802793A007DC0BB /* AutoLayoutDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutDSL.swift; sourceTree = "<group>"; };
 		E1EDE0D22803FCD20095A68D /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		E1EDE0D428040A090095A68D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				E1EC41942801C12D007DC0BB /* AppDelegate.swift */,
 				E1EC41962801C12D007DC0BB /* SceneDelegate.swift */,
+				E1EDE0D428040A090095A68D /* WebViewController.swift */,
 				E1EC41982801C12D007DC0BB /* ViewController.swift */,
 				E1EC41C42802793A007DC0BB /* AutoLayoutDSL.swift */,
 				E1EC419D2801C132007DC0BB /* Assets.xcassets */,
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1EC41C52802793A007DC0BB /* AutoLayoutDSL.swift in Sources */,
+				E1EDE0D528040A090095A68D /* WebViewController.swift in Sources */,
 				E1EDE0D32803FCD20095A68D /* ItemCell.swift in Sources */,
 				E1EC41992801C12D007DC0BB /* ViewController.swift in Sources */,
 				E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */,

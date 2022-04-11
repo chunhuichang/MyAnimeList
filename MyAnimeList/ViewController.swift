@@ -146,7 +146,7 @@ class ViewController: UIViewController {
     }
     
     private func setupUI() {
-        self.view.backgroundColor = UIColor(displayP3Red: 224.0/255.0, green: 216.0/255.0, blue: 200.0/255.0, alpha: 1)
+        self.view.backgroundColor = .white
         
         view.addSubview(topStackView, anchors: [.leadingSafeArea(20), .trailingSafeArea(-20),.topSafeArea(10),.height(50)])
         
@@ -158,6 +158,10 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+        
+        let nav = UINavigationController(rootViewController: WebViewController(urlString: "https://myanimelist.net/manga/23390/Shingeki_no_Kyojin"))
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
     }
 }
 
