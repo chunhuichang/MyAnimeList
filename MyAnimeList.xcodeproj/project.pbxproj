@@ -19,6 +19,7 @@
 		E1EDE0D32803FCD20095A68D /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE0D22803FCD20095A68D /* ItemCell.swift */; };
 		E1EDE0D528040A090095A68D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE0D428040A090095A68D /* WebViewController.swift */; };
 		E1EDE11E2805AF390095A68D /* MyAnimeList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE11C2805AF390095A68D /* MyAnimeList.xcdatamodeld */; };
+		E1EDE1292805B3910095A68D /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1282805B3910095A68D /* Box.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		E1EDE0D22803FCD20095A68D /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		E1EDE0D428040A090095A68D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E1EDE11D2805AF390095A68D /* MyAnimeList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyAnimeList.xcdatamodel; sourceTree = "<group>"; };
+		E1EDE1282805B3910095A68D /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,16 +107,13 @@
 		E1EC41932801C12D007DC0BB /* MyAnimeList */ = {
 			isa = PBXGroup;
 			children = (
-				E1EDE11C2805AF390095A68D /* MyAnimeList.xcdatamodeld */,
-				E1EC41942801C12D007DC0BB /* AppDelegate.swift */,
-				E1EC41962801C12D007DC0BB /* SceneDelegate.swift */,
-				E1EDE0D428040A090095A68D /* WebViewController.swift */,
-				E1EC41982801C12D007DC0BB /* ViewController.swift */,
-				E1EC41C42802793A007DC0BB /* AutoLayoutDSL.swift */,
-				E1EC419D2801C132007DC0BB /* Assets.xcassets */,
-				E1EC419F2801C132007DC0BB /* LaunchScreen.storyboard */,
-				E1EC41A22801C132007DC0BB /* Info.plist */,
-				E1EDE0D22803FCD20095A68D /* ItemCell.swift */,
+				E1EDE11F2805B0D30095A68D /* Application */,
+				E1EDE1202805B0F30095A68D /* Data */,
+				E1EDE1252805B2A40095A68D /* Domain */,
+				E1EDE1242805B2990095A68D /* Infrastructure */,
+				E1EDE1232805B28E0095A68D /* Mocks */,
+				E1EDE1222805B2830095A68D /* Presentation */,
+				E1EDE1212805B26F0095A68D /* Resource */,
 			);
 			path = MyAnimeList;
 			sourceTree = "<group>";
@@ -134,6 +133,106 @@
 				E1EC41B72801C132007DC0BB /* MyAnimeListUITestsLaunchTests.swift */,
 			);
 			path = MyAnimeListUITests;
+			sourceTree = "<group>";
+		};
+		E1EDE11F2805B0D30095A68D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				E1EC41942801C12D007DC0BB /* AppDelegate.swift */,
+				E1EC41962801C12D007DC0BB /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		E1EDE1202805B0F30095A68D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		E1EDE1212805B26F0095A68D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				E1EC419D2801C132007DC0BB /* Assets.xcassets */,
+				E1EC419F2801C132007DC0BB /* LaunchScreen.storyboard */,
+				E1EC41A22801C132007DC0BB /* Info.plist */,
+				E1EDE11C2805AF390095A68D /* MyAnimeList.xcdatamodeld */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		E1EDE1222805B2830095A68D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				E1EDE12B2805B3C30095A68D /* WebView */,
+				E1EDE12A2805B3B40095A68D /* List */,
+				E1EDE1262805B37B0095A68D /* Utils */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		E1EDE1232805B28E0095A68D /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		E1EDE1242805B2990095A68D /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		E1EDE1252805B2A40095A68D /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		E1EDE1262805B37B0095A68D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E1EC41C42802793A007DC0BB /* AutoLayoutDSL.swift */,
+				E1EDE1272805B3860095A68D /* Binding */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E1EDE1272805B3860095A68D /* Binding */ = {
+			isa = PBXGroup;
+			children = (
+				E1EDE1282805B3910095A68D /* Box.swift */,
+			);
+			path = Binding;
+			sourceTree = "<group>";
+		};
+		E1EDE12A2805B3B40095A68D /* List */ = {
+			isa = PBXGroup;
+			children = (
+				E1EC41982801C12D007DC0BB /* ViewController.swift */,
+				E1EDE12C2805B3DB0095A68D /* Cell */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		E1EDE12B2805B3C30095A68D /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				E1EDE0D428040A090095A68D /* WebViewController.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		E1EDE12C2805B3DB0095A68D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E1EDE0D22803FCD20095A68D /* ItemCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +370,7 @@
 				E1EDE0D528040A090095A68D /* WebViewController.swift in Sources */,
 				E1EDE0D32803FCD20095A68D /* ItemCell.swift in Sources */,
 				E1EC41992801C12D007DC0BB /* ViewController.swift in Sources */,
+				E1EDE1292805B3910095A68D /* Box.swift in Sources */,
 				E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */,
 				E1EC41972801C12D007DC0BB /* SceneDelegate.swift in Sources */,
 			);
@@ -445,7 +545,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VRSA3PNL8L;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyAnimeList/Info.plist;
+				INFOPLIST_FILE = MyAnimeList/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -473,7 +573,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VRSA3PNL8L;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyAnimeList/Info.plist;
+				INFOPLIST_FILE = MyAnimeList/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -616,7 +716,8 @@
 				E1EDE11D2805AF390095A68D /* MyAnimeList.xcdatamodel */,
 			);
 			currentVersion = E1EDE11D2805AF390095A68D /* MyAnimeList.xcdatamodel */;
-			path = MyAnimeList.xcdatamodeld;
+			name = MyAnimeList.xcdatamodeld;
+			path = MyAnimeList/Resource/MyAnimeList.xcdatamodeld;
 			sourceTree = SOURCE_ROOT;
 			versionGroupType = wrapper.xcdatamodel;
 		};
