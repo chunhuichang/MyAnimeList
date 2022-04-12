@@ -18,6 +18,7 @@
 		E1EC41C52802793A007DC0BB /* AutoLayoutDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41C42802793A007DC0BB /* AutoLayoutDSL.swift */; };
 		E1EDE0D32803FCD20095A68D /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE0D22803FCD20095A68D /* ItemCell.swift */; };
 		E1EDE0D528040A090095A68D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE0D428040A090095A68D /* WebViewController.swift */; };
+		E1EDE11E2805AF390095A68D /* MyAnimeList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE11C2805AF390095A68D /* MyAnimeList.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		E1EC41C42802793A007DC0BB /* AutoLayoutDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutDSL.swift; sourceTree = "<group>"; };
 		E1EDE0D22803FCD20095A68D /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		E1EDE0D428040A090095A68D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		E1EDE11D2805AF390095A68D /* MyAnimeList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyAnimeList.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		E1EC41932801C12D007DC0BB /* MyAnimeList */ = {
 			isa = PBXGroup;
 			children = (
+				E1EDE11C2805AF390095A68D /* MyAnimeList.xcdatamodeld */,
 				E1EC41942801C12D007DC0BB /* AppDelegate.swift */,
 				E1EC41962801C12D007DC0BB /* SceneDelegate.swift */,
 				E1EDE0D428040A090095A68D /* WebViewController.swift */,
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1EDE11E2805AF390095A68D /* MyAnimeList.xcdatamodeld in Sources */,
 				E1EC41C52802793A007DC0BB /* AutoLayoutDSL.swift in Sources */,
 				E1EDE0D528040A090095A68D /* WebViewController.swift in Sources */,
 				E1EDE0D32803FCD20095A68D /* ItemCell.swift in Sources */,
@@ -604,6 +608,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E1EDE11C2805AF390095A68D /* MyAnimeList.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E1EDE11D2805AF390095A68D /* MyAnimeList.xcdatamodel */,
+			);
+			currentVersion = E1EDE11D2805AF390095A68D /* MyAnimeList.xcdatamodel */;
+			path = MyAnimeList.xcdatamodeld;
+			sourceTree = SOURCE_ROOT;
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E1EC41892801C12D007DC0BB /* Project object */;
 }
