@@ -77,10 +77,12 @@ class ItemCell: UICollectionViewCell {
     
     private lazy var starButton: UIButton = {
         let button = UIButton()
-        let normalImage = UIImage(systemName: "star")?.withTintColor(.systemYellow, renderingMode: .alwaysOriginal)
+        let normalImage = UIImage(systemName: "star.fill")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
         let selectedImage = UIImage(systemName: "star.fill")?.withTintColor(.systemYellow, renderingMode: .alwaysOriginal)
         button.setImage(normalImage, for: .normal)
         button.setImage(selectedImage, for: .selected)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
         return button
     }()
     
@@ -115,9 +117,9 @@ class ItemCell: UICollectionViewCell {
             rankLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/4),
             rankLabel.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -10),
             
-            starButton.widthAnchor.constraint(equalToConstant: 50),
-            starButton.heightAnchor.constraint(equalToConstant: 50),
-            starButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            starButton.widthAnchor.constraint(equalToConstant: 30),
+            starButton.heightAnchor.constraint(equalToConstant: 30),
+            starButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             starButton.bottomAnchor.constraint(equalTo: rankLabel.bottomAnchor),
         ])
     }
