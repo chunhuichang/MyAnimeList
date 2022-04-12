@@ -132,7 +132,7 @@ class ItemCell: UICollectionViewCell {
         self.titleLabel.text = entity.title
 //        self.imageView.image
         self.rankLabel.text = "# \(entity.rank)"
-        self.starButton.isSelected = entity.isFavorite ?? false
+        self.starButton.isSelected = entity.isFavorite 
         self.dateDetails[0].text = entity.startDate
 
         if let endDate = entity.endDate {
@@ -143,29 +143,3 @@ class ItemCell: UICollectionViewCell {
     }
 }
 
-// MARK: - Top
-struct TopEntity {
-    let rank: Int
-    let title: String
-    let url: String
-    let imageURL: String
-    let type: TypeEnum
-    let startDate: String
-    let endDate: String?
-    let isFavorite: Bool?
-
-    enum TypeEnum: String {
-        case tv = "TV"
-        case movie = "Movie"
-        case ova = "OVA"
-        case special = "Special"
-        case music = "Music"
-        case ona = "ONA"
-        case manga = "Manga"
-        case novel = "Novel"
-        case oneShot = "One-shot"
-        case doujinshi = "Doujinshi"
-        case manhwa = "Manhwa"
-        case manhua = "Manhua"
-    }
-}

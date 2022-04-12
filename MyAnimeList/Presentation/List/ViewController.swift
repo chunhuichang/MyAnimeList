@@ -178,7 +178,7 @@ extension ViewController: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(ItemCell.self)", for: indexPath) as? ItemCell {
             //tmpData[indexPath.row]
 
-            cell.setupCell(entity: TopEntity(rank: 2, title: "Imaizumin Chi wa Douyara Gal no Tamariba ni Natteru Rashii", url: "https://myanimelist.net/manga/124483/Imaizumin_Chi_wa_Douyara_Gal_no_Tamariba_ni_Natteru_Rashii", imageURL: "https://cdn.myanimelist.net/images/manga/1/242797.jpg?s=71736414410e4600ca16d063fb9e67e1", type: .doujinshi, startDate: "Aug 2019", endDate: nil, isFavorite: false))
+            cell.setupCell(entity: TopEntity(malID: 23390, rank: 2, title: "Imaizumin Chi wa Douyara Gal no Tamariba ni Natteru Rashii", url: "https://myanimelist.net/manga/124483/Imaizumin_Chi_wa_Douyara_Gal_no_Tamariba_ni_Natteru_Rashii", imageURL: "https://cdn.myanimelist.net/images/manga/1/242797.jpg?s=71736414410e4600ca16d063fb9e67e1", type: "Doujinshi", startDate: "Aug 2019", isFavorite: true))
             
             cell.backgroundColor = .cyan
             return cell

@@ -20,6 +20,7 @@
 		E1EDE0D528040A090095A68D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE0D428040A090095A68D /* WebViewController.swift */; };
 		E1EDE11E2805AF390095A68D /* MyAnimeList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE11C2805AF390095A68D /* MyAnimeList.xcdatamodeld */; };
 		E1EDE1292805B3910095A68D /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1282805B3910095A68D /* Box.swift */; };
+		E1EDE12F2805CA520095A68D /* TopEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE12E2805CA520095A68D /* TopEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		E1EDE0D428040A090095A68D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E1EDE11D2805AF390095A68D /* MyAnimeList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyAnimeList.xcdatamodel; sourceTree = "<group>"; };
 		E1EDE1282805B3910095A68D /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		E1EDE12E2805CA520095A68D /* TopEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 		E1EDE1252805B2A40095A68D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				E1EDE12D2805CA400095A68D /* Entities */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -233,6 +236,14 @@
 				E1EDE0D22803FCD20095A68D /* ItemCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		E1EDE12D2805CA400095A68D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				E1EDE12E2805CA520095A68D /* TopEntity.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,6 +384,7 @@
 				E1EDE1292805B3910095A68D /* Box.swift in Sources */,
 				E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */,
 				E1EC41972801C12D007DC0BB /* SceneDelegate.swift in Sources */,
+				E1EDE12F2805CA520095A68D /* TopEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
