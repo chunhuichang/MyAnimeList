@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41942801C12D007DC0BB /* AppDelegate.swift */; };
 		E1EC41972801C12D007DC0BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41962801C12D007DC0BB /* SceneDelegate.swift */; };
-		E1EC41992801C12D007DC0BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41982801C12D007DC0BB /* ViewController.swift */; };
+		E1EC41992801C12D007DC0BB /* TopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41982801C12D007DC0BB /* TopListViewController.swift */; };
 		E1EC419E2801C132007DC0BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1EC419D2801C132007DC0BB /* Assets.xcassets */; };
 		E1EC41A12801C132007DC0BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1EC419F2801C132007DC0BB /* LaunchScreen.storyboard */; };
-		E1EC41AC2801C132007DC0BB /* MyAnimeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41AB2801C132007DC0BB /* MyAnimeListTests.swift */; };
+		E1EC41AC2801C132007DC0BB /* MyAnimeListUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41AB2801C132007DC0BB /* MyAnimeListUseCaseTests.swift */; };
 		E1EC41B62801C132007DC0BB /* MyAnimeListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41B52801C132007DC0BB /* MyAnimeListUITests.swift */; };
 		E1EC41B82801C132007DC0BB /* MyAnimeListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41B72801C132007DC0BB /* MyAnimeListUITestsLaunchTests.swift */; };
 		E1EC41C52802793A007DC0BB /* AutoLayoutDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41C42802793A007DC0BB /* AutoLayoutDSL.swift */; };
@@ -21,6 +21,10 @@
 		E1EDE11E2805AF390095A68D /* MyAnimeList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE11C2805AF390095A68D /* MyAnimeList.xcdatamodeld */; };
 		E1EDE1292805B3910095A68D /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1282805B3910095A68D /* Box.swift */; };
 		E1EDE12F2805CA520095A68D /* TopEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE12E2805CA520095A68D /* TopEntity.swift */; };
+		E1EDE134280666870095A68D /* TopListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE133280666870095A68D /* TopListRepository.swift */; };
+		E1EDE1362806689F0095A68D /* TopListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1352806689F0095A68D /* TopListUseCase.swift */; };
+		E1EDE13928067F540095A68D /* RemoteDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE13828067F540095A68D /* RemoteDataLoader.swift */; };
+		E1EDE13B280695F40095A68D /* MyAnimeListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE13A280695F40095A68D /* MyAnimeListViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,12 +48,12 @@
 		E1EC41912801C12D007DC0BB /* MyAnimeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAnimeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EC41942801C12D007DC0BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1EC41962801C12D007DC0BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E1EC41982801C12D007DC0BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E1EC41982801C12D007DC0BB /* TopListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListViewController.swift; sourceTree = "<group>"; };
 		E1EC419D2801C132007DC0BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1EC41A02801C132007DC0BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1EC41A22801C132007DC0BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1EC41A72801C132007DC0BB /* MyAnimeListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyAnimeListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1EC41AB2801C132007DC0BB /* MyAnimeListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnimeListTests.swift; sourceTree = "<group>"; };
+		E1EC41AB2801C132007DC0BB /* MyAnimeListUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnimeListUseCaseTests.swift; sourceTree = "<group>"; };
 		E1EC41B12801C132007DC0BB /* MyAnimeListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyAnimeListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EC41B52801C132007DC0BB /* MyAnimeListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnimeListUITests.swift; sourceTree = "<group>"; };
 		E1EC41B72801C132007DC0BB /* MyAnimeListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnimeListUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -59,6 +63,10 @@
 		E1EDE11D2805AF390095A68D /* MyAnimeList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyAnimeList.xcdatamodel; sourceTree = "<group>"; };
 		E1EDE1282805B3910095A68D /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		E1EDE12E2805CA520095A68D /* TopEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopEntity.swift; sourceTree = "<group>"; };
+		E1EDE133280666870095A68D /* TopListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListRepository.swift; sourceTree = "<group>"; };
+		E1EDE1352806689F0095A68D /* TopListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListUseCase.swift; sourceTree = "<group>"; };
+		E1EDE13828067F540095A68D /* RemoteDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataLoader.swift; sourceTree = "<group>"; };
+		E1EDE13A280695F40095A68D /* MyAnimeListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnimeListViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +131,8 @@
 		E1EC41AA2801C132007DC0BB /* MyAnimeListTests */ = {
 			isa = PBXGroup;
 			children = (
-				E1EC41AB2801C132007DC0BB /* MyAnimeListTests.swift */,
+				E1EC41AB2801C132007DC0BB /* MyAnimeListUseCaseTests.swift */,
+				E1EDE13A280695F40095A68D /* MyAnimeListViewModelTests.swift */,
 			);
 			path = MyAnimeListTests;
 			sourceTree = "<group>";
@@ -184,6 +193,7 @@
 		E1EDE1242805B2990095A68D /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				E1EDE13728067F450095A68D /* Network */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -191,6 +201,8 @@
 		E1EDE1252805B2A40095A68D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				E1EDE131280664F60095A68D /* Interfaces */,
+				E1EDE130280664C80095A68D /* UseCases */,
 				E1EDE12D2805CA400095A68D /* Entities */,
 			);
 			path = Domain;
@@ -216,7 +228,7 @@
 		E1EDE12A2805B3B40095A68D /* List */ = {
 			isa = PBXGroup;
 			children = (
-				E1EC41982801C12D007DC0BB /* ViewController.swift */,
+				E1EC41982801C12D007DC0BB /* TopListViewController.swift */,
 				E1EDE12C2805B3DB0095A68D /* Cell */,
 			);
 			path = List;
@@ -244,6 +256,38 @@
 				E1EDE12E2805CA520095A68D /* TopEntity.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		E1EDE130280664C80095A68D /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				E1EDE1352806689F0095A68D /* TopListUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		E1EDE131280664F60095A68D /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				E1EDE132280665020095A68D /* Repositories */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		E1EDE132280665020095A68D /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				E1EDE133280666870095A68D /* TopListRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		E1EDE13728067F450095A68D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E1EDE13828067F540095A68D /* RemoteDataLoader.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,9 +422,12 @@
 			files = (
 				E1EDE11E2805AF390095A68D /* MyAnimeList.xcdatamodeld in Sources */,
 				E1EC41C52802793A007DC0BB /* AutoLayoutDSL.swift in Sources */,
+				E1EDE13928067F540095A68D /* RemoteDataLoader.swift in Sources */,
+				E1EDE1362806689F0095A68D /* TopListUseCase.swift in Sources */,
 				E1EDE0D528040A090095A68D /* WebViewController.swift in Sources */,
+				E1EDE134280666870095A68D /* TopListRepository.swift in Sources */,
 				E1EDE0D32803FCD20095A68D /* ItemCell.swift in Sources */,
-				E1EC41992801C12D007DC0BB /* ViewController.swift in Sources */,
+				E1EC41992801C12D007DC0BB /* TopListViewController.swift in Sources */,
 				E1EDE1292805B3910095A68D /* Box.swift in Sources */,
 				E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */,
 				E1EC41972801C12D007DC0BB /* SceneDelegate.swift in Sources */,
@@ -392,7 +439,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1EC41AC2801C132007DC0BB /* MyAnimeListTests.swift in Sources */,
+				E1EC41AC2801C132007DC0BB /* MyAnimeListUseCaseTests.swift in Sources */,
+				E1EDE13B280695F40095A68D /* MyAnimeListViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

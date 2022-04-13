@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
-        window?.rootViewController = ViewController(viewModel: "TEST")
+        window?.rootViewController = TopListViewController(viewModel: "TEST")
         window?.makeKeyAndVisible()
     }
 
