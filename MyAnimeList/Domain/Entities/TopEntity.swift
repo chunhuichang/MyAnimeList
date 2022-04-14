@@ -28,7 +28,7 @@ public struct TopEntity {
     let type: String
     let startDate: String
     let endDate: String?
-    let isFavorite: Bool
+    var isFavorite: Bool
 
 //    enum TypeEnum: String {
 //        case tv = "TV"

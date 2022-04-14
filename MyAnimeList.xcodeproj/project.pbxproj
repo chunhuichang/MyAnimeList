@@ -25,6 +25,10 @@
 		E1EDE1362806689F0095A68D /* TopListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1352806689F0095A68D /* TopListUseCase.swift */; };
 		E1EDE13928067F540095A68D /* RemoteDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE13828067F540095A68D /* RemoteDataLoader.swift */; };
 		E1EDE13B280695F40095A68D /* MyAnimeListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE13A280695F40095A68D /* MyAnimeListViewModelTests.swift */; };
+		E1EDE13E2806C01A0095A68D /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = E1EDE13D2806C01A0095A68D /* Nimble */; };
+		E1EDE1402806C4D80095A68D /* TopListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE13F2806C4D80095A68D /* TopListViewModel.swift */; };
+		E1EDE1422807A6D70095A68D /* TopListMockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1412807A6D70095A68D /* TopListMockRepository.swift */; };
+		E1EDE1442807B5AE0095A68D /* SubtypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1432807B5AE0095A68D /* SubtypeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,9 @@
 		E1EDE1352806689F0095A68D /* TopListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListUseCase.swift; sourceTree = "<group>"; };
 		E1EDE13828067F540095A68D /* RemoteDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataLoader.swift; sourceTree = "<group>"; };
 		E1EDE13A280695F40095A68D /* MyAnimeListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnimeListViewModelTests.swift; sourceTree = "<group>"; };
+		E1EDE13F2806C4D80095A68D /* TopListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListViewModel.swift; sourceTree = "<group>"; };
+		E1EDE1412807A6D70095A68D /* TopListMockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListMockRepository.swift; sourceTree = "<group>"; };
+		E1EDE1432807B5AE0095A68D /* SubtypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtypeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1EDE13E2806C01A0095A68D /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +194,7 @@
 		E1EDE1232805B28E0095A68D /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				E1EDE1412807A6D70095A68D /* TopListMockRepository.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -229,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				E1EC41982801C12D007DC0BB /* TopListViewController.swift */,
+				E1EDE13F2806C4D80095A68D /* TopListViewModel.swift */,
 				E1EDE12C2805B3DB0095A68D /* Cell */,
 			);
 			path = List;
@@ -246,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				E1EDE0D22803FCD20095A68D /* ItemCell.swift */,
+				E1EDE1432807B5AE0095A68D /* SubtypeCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -324,6 +335,9 @@
 				E1EC41A92801C132007DC0BB /* PBXTargetDependency */,
 			);
 			name = MyAnimeListTests;
+			packageProductDependencies = (
+				E1EDE13D2806C01A0095A68D /* Nimble */,
+			);
 			productName = MyAnimeListTests;
 			productReference = E1EC41A72801C132007DC0BB /* MyAnimeListTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -378,6 +392,9 @@
 				Base,
 			);
 			mainGroup = E1EC41882801C12D007DC0BB;
+			packageReferences = (
+				E1EDE13C2806C01A0095A68D /* XCRemoteSwiftPackageReference "Nimble" */,
+			);
 			productRefGroup = E1EC41922801C12D007DC0BB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -423,7 +440,9 @@
 				E1EDE11E2805AF390095A68D /* MyAnimeList.xcdatamodeld in Sources */,
 				E1EC41C52802793A007DC0BB /* AutoLayoutDSL.swift in Sources */,
 				E1EDE13928067F540095A68D /* RemoteDataLoader.swift in Sources */,
+				E1EDE1402806C4D80095A68D /* TopListViewModel.swift in Sources */,
 				E1EDE1362806689F0095A68D /* TopListUseCase.swift in Sources */,
+				E1EDE1422807A6D70095A68D /* TopListMockRepository.swift in Sources */,
 				E1EDE0D528040A090095A68D /* WebViewController.swift in Sources */,
 				E1EDE134280666870095A68D /* TopListRepository.swift in Sources */,
 				E1EDE0D32803FCD20095A68D /* ItemCell.swift in Sources */,
@@ -432,6 +451,7 @@
 				E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */,
 				E1EC41972801C12D007DC0BB /* SceneDelegate.swift in Sources */,
 				E1EDE12F2805CA520095A68D /* TopEntity.swift in Sources */,
+				E1EDE1442807B5AE0095A68D /* SubtypeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -768,6 +788,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E1EDE13C2806C01A0095A68D /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E1EDE13D2806C01A0095A68D /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E1EDE13C2806C01A0095A68D /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E1EDE11C2805AF390095A68D /* MyAnimeList.xcdatamodeld */ = {
