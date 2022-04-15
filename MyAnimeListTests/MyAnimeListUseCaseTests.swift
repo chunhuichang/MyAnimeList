@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Nimble
 @testable import MyAnimeList
 
 class MyAnimeListUseCaseTests: XCTestCase {
@@ -35,9 +36,6 @@ class MyAnimeListUseCaseTests: XCTestCase {
     }
 
     func test_TopListUseCase__whenSuccessfullyFetch_thenDataIsQuery()  {
-        
-        let expectation = self.expectation(description: "Fetch Data")
-        
         let predicateFetchEntity = [
             TopEntity(malID: 111, rank: 1, title: "title1", url: "url1", imageURL: "imageURL1", type: "Movie", startDate: "Apr 2017"),
             TopEntity(malID: 222, rank: 3, title: "title2", url: "url2", imageURL: "imageURL2", type: "TV", startDate: "Apr 2015")]
@@ -52,18 +50,13 @@ class MyAnimeListUseCaseTests: XCTestCase {
         
         sut.fetchTop(queryParams: [String: String]()) { result in
             switch result {
-                
                 case .success(let entities):
-                    XCTAssertTrue(entities.count == predicateFetchEntity.count)
-                XCTAssertTrue(entities[0].malID == predicateFetchEntity[0].malID)
-                XCTAssertTrue(entities[0].isFavorite == predicateLocalEntity[0].isFavorite)
-                    
-                    expectation.fulfill()
+                expect(entities.count) == predicateFetchEntity.count
+                expect(entities[0].malID) == predicateFetchEntity[0].malID
+                expect(entities[0].isFavorite) == predicateLocalEntity[0].isFavorite
                 case .failure:
                     XCTFail("fetchTop failure")
             }
         }
-        
-        waitForExpectations(timeout: 5, handler: nil)
     }
 }
