@@ -248,7 +248,7 @@ extension TopListViewController: UICollectionViewDelegateFlowLayout {
         if collectionView == self.subtypeCollectionView {
             return CGSize(width: 100, height: collectionView.frame.height - 5)
         } else if collectionView == self.listCollectionView {
-            return CGSize(width: collectionView.frame.width - 10, height: collectionView.frame.height / 3)
+            return CGSize(width: (collectionView.frame.width - 10) / 2, height: collectionView.frame.height / 2)
         }
 
         return CGSize(width: collectionView.frame.width - 10, height: collectionView.frame.height / 3)

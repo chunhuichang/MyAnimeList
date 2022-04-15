@@ -18,7 +18,7 @@ class ItemCell: UICollectionViewCell {
     
     private lazy var imageView: UIImageView = {
         let imgView = UIImageView()
-        imgView.image = UIImage.init(named: "greenbug")
+        imgView.image = UIImage.init(named: "malId47347")
         return imgView
     }()
     
@@ -39,7 +39,7 @@ class ItemCell: UICollectionViewCell {
         var views = [UILabel]()
         for text in 0..<2 {
             let label = UILabel()
-            label.font = .systemFont(ofSize: 20, weight: .regular)
+            label.font = .systemFont(ofSize: 16, weight: .regular)
             label.textColor = .systemGray
             views.append(label)
         }
