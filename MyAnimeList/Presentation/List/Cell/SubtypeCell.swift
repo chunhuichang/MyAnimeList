@@ -13,6 +13,7 @@ class SubtypeCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18)
         label.textColor = .blue
+        label.textAlignment = .center
         return label
     }()
     
@@ -28,8 +29,10 @@ class SubtypeCell: UICollectionViewCell {
         }
         
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: centerYAnchor),
+            label.topAnchor.constraint(equalTo: topAnchor),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
     

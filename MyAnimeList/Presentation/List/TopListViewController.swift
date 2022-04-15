@@ -221,7 +221,10 @@ extension TopListViewController: UICollectionViewDataSource {
 extension TopListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.subtypeCollectionView {
-            return CGSize(width: 100, height: collectionView.frame.height - 5)
+            let label = UILabel(frame: CGRect.zero)
+            label.text = self.viewModel.subtypeData.value?[indexPath.row].0
+            label.sizeToFit()
+            return CGSize(width: label.frame.width + 20, height: collectionView.frame.height - 5)
         }
 
         return CGSize(width: (collectionView.frame.width - 10) / 2, height: collectionView.frame.height / 2)
