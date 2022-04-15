@@ -8,7 +8,7 @@
 import Foundation
 
 public struct TopEntity {
-    internal init(malID: Int, rank: Int, title: String, url: String, imageURL: String, type: String, startDate: String, endDate: String? = nil, isFavorite: Bool = false) {
+    public init(malID: Int, rank: Int, title: String, url: String, imageURL: String, type: String, startDate: String?, endDate: String? = nil, isFavorite: Bool = false) {
         self.malID = malID
         self.rank = rank
         self.title = title
@@ -26,24 +26,9 @@ public struct TopEntity {
     let url: String
     let imageURL: String
     let type: String
-    let startDate: String
+    let startDate: String?
     let endDate: String?
     var isFavorite: Bool
-
-//    enum TypeEnum: String {
-//        case tv = "TV"
-//        case movie = "Movie"
-//        case ova = "OVA"
-//        case special = "Special"
-//        case music = "Music"
-//        case ona = "ONA"
-//        case manga = "Manga"
-//        case novel = "Novel"
-//        case oneShot = "One-shot"
-//        case doujinshi = "Doujinshi"
-//        case manhwa = "Manhwa"
-//        case manhua = "Manhua"
-//    }
 }
 /*
  {

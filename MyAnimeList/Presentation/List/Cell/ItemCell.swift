@@ -144,6 +144,7 @@ extension ItemCell {
             vm.entity.binding(listener: { [weak self] (newValue, _) in
                 guard let self = self, let entity = newValue else { return }
                 self.titleLabel.text = entity.title
+                //TODO: fetch imageurl
                 //        self.imageView.image
                 self.rankLabel.text = "# \(entity.rank)"
                 self.starButton.isSelected = entity.isFavorite
@@ -168,7 +169,6 @@ extension ItemCell {
     func setupCell(viewModel: ItemCellVM, completion: @escaping ChangeFavortite) {
         self.viewModel = viewModel
         self.completion = completion
-        
         self.binding()
     }
 }

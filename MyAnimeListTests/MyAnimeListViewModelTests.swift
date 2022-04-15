@@ -12,7 +12,7 @@ import Nimble
 class MyAnimeListViewModelTests: XCTestCase {
     
     private struct MockUseCase: TopListUseCase {
-        func fetchTop(queryParams: [String : String], with completion: @escaping (Result<[TopEntity], DataLoaderError>) -> Void) {
+        func fetchTop(queryString: String, with completion: @escaping (Result<[TopEntity], DataLoaderError>) -> Void) {
             guard let result = fetchDataTopResult else {
                 completion(.failure(DataLoaderError.noResponse))
                 return

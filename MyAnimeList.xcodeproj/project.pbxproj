@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		E12EAD1F28091902004A78FE /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD1E28091902004A78FE /* WebViewModel.swift */; };
 		E12EAD2128092F50004A78FE /* ItemCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD2028092F50004A78FE /* ItemCellVM.swift */; };
+		E12EAD2428093030004A78FE /* MainTopListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD2328093030004A78FE /* MainTopListRepository.swift */; };
+		E12EAD26280936D6004A78FE /* ApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD25280936D6004A78FE /* ApiConfig.swift */; };
+		E12EAD2928093804004A78FE /* TopDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD2828093804004A78FE /* TopDTO+Mapping.swift */; };
+		E12EAD2C28094FF5004A78FE /* TopApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD2B28094FF5004A78FE /* TopApi.swift */; };
 		E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41942801C12D007DC0BB /* AppDelegate.swift */; };
 		E1EC41972801C12D007DC0BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41962801C12D007DC0BB /* SceneDelegate.swift */; };
 		E1EC41992801C12D007DC0BB /* TopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41982801C12D007DC0BB /* TopListViewController.swift */; };
@@ -55,6 +59,10 @@
 /* Begin PBXFileReference section */
 		E12EAD1E28091902004A78FE /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		E12EAD2028092F50004A78FE /* ItemCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellVM.swift; sourceTree = "<group>"; };
+		E12EAD2328093030004A78FE /* MainTopListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTopListRepository.swift; sourceTree = "<group>"; };
+		E12EAD25280936D6004A78FE /* ApiConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConfig.swift; sourceTree = "<group>"; };
+		E12EAD2828093804004A78FE /* TopDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopDTO+Mapping.swift"; sourceTree = "<group>"; };
+		E12EAD2B28094FF5004A78FE /* TopApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopApi.swift; sourceTree = "<group>"; };
 		E1EC41912801C12D007DC0BB /* MyAnimeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAnimeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EC41942801C12D007DC0BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1EC41962801C12D007DC0BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +118,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E12EAD2228093012004A78FE /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				E12EAD2328093030004A78FE /* MainTopListRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		E12EAD27280937DD004A78FE /* DataMappingDTOs */ = {
+			isa = PBXGroup;
+			children = (
+				E12EAD2828093804004A78FE /* TopDTO+Mapping.swift */,
+			);
+			path = DataMappingDTOs;
+			sourceTree = "<group>";
+		};
+		E12EAD2A28094FE3004A78FE /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				E12EAD2B28094FF5004A78FE /* TopApi.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
 		E1EC41882801C12D007DC0BB = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +208,9 @@
 		E1EDE1202805B0F30095A68D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				E12EAD2A28094FE3004A78FE /* Api */,
+				E12EAD27280937DD004A78FE /* DataMappingDTOs */,
+				E12EAD2228093012004A78FE /* Repositories */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -309,6 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				E1EDE13828067F540095A68D /* RemoteDataLoader.swift */,
+				E12EAD25280936D6004A78FE /* ApiConfig.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -454,12 +490,14 @@
 				E1EC41C52802793A007DC0BB /* AutoLayoutDSL.swift in Sources */,
 				E1EDE13928067F540095A68D /* RemoteDataLoader.swift in Sources */,
 				E12EAD1F28091902004A78FE /* WebViewModel.swift in Sources */,
+				E12EAD26280936D6004A78FE /* ApiConfig.swift in Sources */,
 				E1EDE1402806C4D80095A68D /* TopListViewModel.swift in Sources */,
 				E1EDE14C280900FB0095A68D /* DetailCoordinator.swift in Sources */,
 				E1EDE1362806689F0095A68D /* TopListUseCase.swift in Sources */,
 				E1EDE1422807A6D70095A68D /* TopListMockRepository.swift in Sources */,
 				E1EDE14A2808F9740095A68D /* AppCoordinator.swift in Sources */,
 				E1EDE0D528040A090095A68D /* WebViewController.swift in Sources */,
+				E12EAD2C28094FF5004A78FE /* TopApi.swift in Sources */,
 				E1EDE134280666870095A68D /* TopListRepository.swift in Sources */,
 				E1EDE0D32803FCD20095A68D /* ItemCell.swift in Sources */,
 				E1EC41992801C12D007DC0BB /* TopListViewController.swift in Sources */,
@@ -467,6 +505,8 @@
 				E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */,
 				E1EC41972801C12D007DC0BB /* SceneDelegate.swift in Sources */,
 				E1EDE12F2805CA520095A68D /* TopEntity.swift in Sources */,
+				E12EAD2428093030004A78FE /* MainTopListRepository.swift in Sources */,
+				E12EAD2928093804004A78FE /* TopDTO+Mapping.swift in Sources */,
 				E1EDE1442807B5AE0095A68D /* SubtypeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

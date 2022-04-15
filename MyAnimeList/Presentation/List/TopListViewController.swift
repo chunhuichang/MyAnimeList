@@ -10,51 +10,29 @@ import UIKit
 class TopListViewController: UIViewController {
     
     private var viewModel: TopListViewModel
-//    private let typeNames = ["Anime","Manga","Favorite"]
-//    private let typeSubtype = ["anime":["airing","upcoming","tv","movie","ova","special","bypopularity","favorite"],"manga":["manga","novels","oneshots","doujin","manhwa","manhua","bypopularity","favorite"],"favorite":[]]
-//    private var tmpData = ["airing","upcoming","tv","movie","ova","special","bypopularity","favorite"]
     
     
     private lazy var subtypeCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        //section的間距
-//        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        //cell間距
         layout.minimumLineSpacing = 5
-        //cell 長寬
-//        layout.itemSize = CGSize(width: 100, height: 30)
-        //layout.estimatedItemSize
-        //滑動的方向
         layout.scrollDirection = .horizontal
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(SubtypeCell.self, forCellWithReuseIdentifier: "\(SubtypeCell.self)")
         view.delegate = self
         view.dataSource = self
-//        view.backgroundColor = .systemPink
-//        view.isPagingEnabled = true
-//        view.collectionViewLayout.invalidateLayout()
         return view
     }()
     
     private lazy var listCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        //section的間距
-//        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        //cell間距
         layout.minimumLineSpacing = 5
-        //cell 長寬
-//        layout.itemSize = CGSize(width: 100, height: 30)
-        //layout.estimatedItemSize
-        //滑動的方向
         layout.scrollDirection = .vertical
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(ItemCell.self, forCellWithReuseIdentifier: "\(ItemCell.self)")
         view.delegate = self
         view.dataSource = self
-//        view.isPagingEnabled = true
-//        view.collectionViewLayout.invalidateLayout()
         return view
     }()
         
@@ -88,7 +66,6 @@ class TopListViewController: UIViewController {
     }()
         
     @objc private func selected(_ sender: UIButton) {
-        print("Button tapped:\(sender.tag)")
         self.viewModel.typeClick(index: sender.tag)
     }
     
@@ -129,7 +106,6 @@ private extension TopListViewController {
             subtypeCollectionView.topAnchor.constraint(equalTo: topStackView.bottomAnchor, constant: 10),
             subtypeCollectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             subtypeCollectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-//            subtypeCollectionView.heightAnchor.constraint(equalToConstant: 50),
             heightConstraint,
 
             listCollectionView.topAnchor.constraint(equalTo: subtypeCollectionView.bottomAnchor, constant: 10),
@@ -179,10 +155,16 @@ private extension TopListViewController {
                 
         output.typeIndex.binding {[weak self] newValue, _ in
             guard let self = self, let newValue = newValue else { return }
-//            print("typeIndex=\(newValue),subtypeData=\(self.viewModel.subtypeData.value)")
             DispatchQueue.main.async {
                 self.types.forEach { $0.backgroundColor = .lightGray }
                 self.types[newValue].backgroundColor = .systemPink
+            }
+        }
+        
+        output.scrollToTop.binding {[weak self] _, _ in
+            guard let self = self, let dataCount = self.viewModel.listData.value?.count, dataCount > 0 else { return }
+            DispatchQueue.main.async {
+                self.listCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
             }
         }
     }
@@ -190,8 +172,6 @@ private extension TopListViewController {
 
 extension TopListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
-        
         if collectionView == self.subtypeCollectionView {
             self.viewModel.subtypeClick(index: indexPath.row)
         } else if collectionView == self.listCollectionView, let cellVM = self.viewModel.listData.value?[indexPath.row] {
@@ -222,9 +202,6 @@ extension TopListViewController: UICollectionViewDataSource {
                 guard let self = self, let entity = entity else { return }
                 self.viewModel.upadteFavorite(entity: entity)
             }
-
-            
-//            cell.backgroundColor = .cyan
             return cell
         } else if collectionView == self.subtypeCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(SubtypeCell.self)", for: indexPath) as? SubtypeCell ,
@@ -233,30 +210,21 @@ extension TopListViewController: UICollectionViewDataSource {
             }
             
             cell.setupCell(cellVM.0, isSelected: cellVM.1)
-            
             cell.layer.cornerRadius = 5.0
-//            cell.backgroundColor = .yellow
             return cell
         } else {
             return UICollectionViewCell()
         }
-//        fatalError("Unable to dequeue subclassed cell")
     }
 }
 
 extension TopListViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        CGSize(width: collectionView.frame.width, height: 60)
-//    }
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.subtypeCollectionView {
             return CGSize(width: 100, height: collectionView.frame.height - 5)
-        } else if collectionView == self.listCollectionView {
-            return CGSize(width: (collectionView.frame.width - 10) / 2, height: collectionView.frame.height / 2)
         }
 
-        return CGSize(width: collectionView.frame.width - 10, height: collectionView.frame.height / 3)
+        return CGSize(width: (collectionView.frame.width - 10) / 2, height: collectionView.frame.height / 2)
     }
 }
 

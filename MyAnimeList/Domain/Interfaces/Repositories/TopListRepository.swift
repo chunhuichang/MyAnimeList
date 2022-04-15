@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol TopListRepository {
-    func fetchTop(queryParams: [String: String], with completion: @escaping (Result<[TopEntity], DataLoaderError>) -> Void)
+    func fetchTop(queryString: String, with completion: @escaping (Result<[TopEntity], DataLoaderError>) -> Void)
     
     func getLocalTopData() -> [TopEntity]?
     

@@ -15,8 +15,9 @@ public final class AppCoordinator: AppCoordinatorDelegate {
     public var rootVC: UIViewController?
     
     public func start() {
+        let repository = MainTopListRepository()
         //Mock
-        let repository = TopListMockRepository()
+//        let repository = TopListMockRepository()
         let usecase = MainTopListUseCase(repository: repository)
         let vm = TopListViewModel(usecase)
         vm.delegate = self

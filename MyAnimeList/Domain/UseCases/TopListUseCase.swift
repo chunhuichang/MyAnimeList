@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol TopListUseCase {
-    func fetchTop(queryParams: [String: String], with completion: @escaping (Result<[TopEntity], DataLoaderError>) -> Void)
+    func fetchTop(queryString: String, with completion: @escaping (Result<[TopEntity], DataLoaderError>) -> Void)
     
     func getLocalTopData() -> [TopEntity]?
     
@@ -21,7 +21,7 @@ public final class MainTopListUseCase: TopListUseCase {
         self.repository = repository
     }
     
-    public func fetchTop(queryParams: [String : String], with completion: @escaping (Result<[TopEntity], DataLoaderError>) -> Void) {
+    public func fetchTop(queryString: String, with completion: @escaping (Result<[TopEntity], DataLoaderError>) -> Void) {
         let localData: [TopEntity]
         if let data = getLocalTopData() {
             localData = data
@@ -29,7 +29,7 @@ public final class MainTopListUseCase: TopListUseCase {
             localData = [TopEntity]()
         }
         
-        self.repository.fetchTop(queryParams: queryParams) {[weak self] result in
+        self.repository.fetchTop(queryString: queryString) {[weak self] result in
             guard let self = self else {
                 completion(.failure(.noResponse))
                 return

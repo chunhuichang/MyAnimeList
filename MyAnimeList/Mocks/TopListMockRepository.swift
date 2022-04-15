@@ -8,7 +8,7 @@
 import Foundation
 
 final class TopListMockRepository: TopListRepository {
-    func fetchTop(queryParams: [String : String], with completion: @escaping (Result<[TopEntity], DataLoaderError>) -> Void) {
+    func fetchTop(queryString: String, with completion: @escaping (Result<[TopEntity], DataLoaderError>) -> Void) {
         guard let entities = self.fetchEntities else {
             completion(.failure(.noResponse))
             return

@@ -20,13 +20,12 @@ public protocol TopListVMInput {
 }
 // Output
 public protocol TopListVMOutput {
-    //    var alertMsg: Box<(String, String)> { get }
     var isLoading: Box<Bool> { get }
     var isSubTypeHidden: Box<Bool> { get }
     var subtypeData: Box<[(String,Bool)]> { get }
     var listData: Box<[TopEntity]> { get }
     var typeIndex: Box<Int> { get }
-//    var subtypeIndex: Box<Int> { get }
+    var scrollToTop: Box<()> { get }
 }
 // Manager
 public protocol TopListVMManager {
@@ -66,21 +65,18 @@ public final class TopListViewModel: TopListVMInput, TopListVMOutput, TopListVMM
     public var subtypeData: Box<[(String,Bool)]> = Box([(String,Bool)]())
     public var listData: Box<[TopEntity]> = Box([TopEntity]())
     public var typeIndex: Box<Int> = Box(nil)
-//    public var subtypeIndex: Box<Int> = Box(nil)
+    public var scrollToTop: Box<()> = Box(())
 }
 
 extension TopListViewModel {
     private func bindingInOut() {
         fetchDataTrigger.binding(trigger: false) { [weak self]_, _ in
             guard let self = self else { return }
-            print("fetchDataTrigger typeIndex=\(self.typeIndex.value)")
-//            print("subtypeIndex=\(self.subtypeIndex.value)")
-            var params = [String: String]()
-            params["type"] = "\(self.typeNames[self.typeIndex.value ?? 0])"
-            params["subtype"] = ""
-            params["page"] = "\(self.page)"
+            let type = self.typeNames[self.typeIndex.value ?? 0]
+            let page = self.page
+            let subtype = self.subtypeData.value?[self.subtypeIndex].0 ?? ""
             self.isLoading.value = true
-            self.usecase?.fetchTop(queryParams: params, with: { [weak self] result in
+            self.usecase?.fetchTop(queryString: "/\(type)/\(page)/\(subtype)", with: { [weak self] result in
                 guard let self = self else { return }
                 self.isLoading.value = false
                 switch result {
@@ -89,7 +85,6 @@ extension TopListViewModel {
                     self.page += 1
                     
                 case.failure(let error):
-                    //                    self.alertMsg.value = (error.description.title, error.description.msg)
                     fatalError("error:\(error)")
                 }
             })
@@ -106,7 +101,6 @@ extension TopListViewModel {
 
 
 extension TopListViewModel {
-    // button add target how to set index to func
     public func typeClick(index: Int) {
         self.typeIndex.value = index
         if let subtypes = self.typeSubtype["\(self.typeNames[index])"], !subtypes.isEmpty {
@@ -124,6 +118,8 @@ extension TopListViewModel {
             return
         }
         self.subtypeIndex = index
+        self.page = 0
+        self.scrollToTop.value = ()
         tmpSubtypeData = tmpSubtypeData.map{ ($0.0,false) }
         tmpSubtypeData[index].1 = true
         
