@@ -130,6 +130,13 @@ extension TopListViewModel {
         self.subtypeData.value = tmpSubtypeData
         self.fetchDataTrigger.value = ()
     }
+    
+    public func upadteFavorite(entity: TopEntity) {
+        guard let tmpListData = self.listData.value, let firstIndex = tmpListData.firstIndex(where: {$0.malID == entity.malID}) else { return }
+        self.listData.value?[firstIndex].isFavorite = entity.isFavorite
+        
+        //TODO: local list update
+    }
 }
 
 extension TopListViewModel {

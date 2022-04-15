@@ -79,10 +79,14 @@ class ItemCell: UICollectionViewCell {
         button.setImage(selectedImage, for: .selected)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
+        button.addTarget(nil, action: #selector(favButtonClicked(_:)), for: .touchUpInside)
         return button
     }()
     
     private var viewModel: ItemCellVM?
+    
+    typealias ChangeFavortite = (_ entity: TopEntity?) -> Void
+    private var completion: ChangeFavortite? = nil
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -128,31 +132,51 @@ class ItemCell: UICollectionViewCell {
 }
 
 extension ItemCell {
-    func setupCell(entity: TopEntity) {
-        self.titleLabel.text = entity.title
-        //        self.imageView.image
-        self.rankLabel.text = "# \(entity.rank)"
-        self.starButton.isSelected = entity.isFavorite
-        self.dateDetails[0].text = entity.startDate
+    private func removeAllBinding() {
+        self.viewModel?.isFavorite.removeAllBinding()
+        self.viewModel?.entity.removeAllBinding()
+    }
+    
+    public func binding() {
+        self.removeAllBinding()
         
-        if let endDate = entity.endDate {
-            self.dateDetails[1].text = endDate
-        } else {
-            self.dateDetails[1].text = ""
+        if let vm = self.viewModel {
+            vm.entity.binding(listener: { [weak self] (newValue, _) in
+                guard let self = self, let entity = newValue else { return }
+                self.titleLabel.text = entity.title
+                //        self.imageView.image
+                self.rankLabel.text = "# \(entity.rank)"
+                self.starButton.isSelected = entity.isFavorite
+                self.dateDetails[0].text = entity.startDate
+                
+                if let endDate = entity.endDate {
+                    self.dateDetails[1].text = endDate
+                } else {
+                    self.dateDetails[1].text = ""
+                }
+            })
+            
+            vm.isFavorite.binding(listener: { [weak self] (newValue, _) in
+                guard let self = self else { return }
+                self.starButton.isSelected = (newValue ?? false)
+            })
         }
     }
 }
 
-public final class ItemCellVM {
-    var isFavorite: Box<Bool> = Box(false)
-    var entity: Box<TopEntity> = Box(nil)
-    
-    public init(entity: TopEntity) {
-        self.isFavorite.value = entity.isFavorite
-        self.entity.value = entity
+extension ItemCell {
+    func setupCell(viewModel: ItemCellVM, completion: @escaping ChangeFavortite) {
+        self.viewModel = viewModel
+        self.completion = completion
+        
+        self.binding()
     }
-    
-    public func upadteFavorite(isFavorite: Bool) {
-        self.isFavorite.value?.toggle()
+}
+
+extension ItemCell {
+    @objc private func favButtonClicked(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        self.viewModel?.upadteFavorite(isFavorite: sender.isSelected)
+        self.completion?(self.viewModel?.entity.value)
     }
 }

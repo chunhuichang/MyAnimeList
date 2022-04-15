@@ -216,8 +216,13 @@ extension TopListViewController: UICollectionViewDataSource {
                   let cellVM = self.viewModel.listData.value?[indexPath.row] else {
                 return UICollectionViewCell()
             }
+            
+            let vm = ItemCellVM(entity: cellVM)
+            cell.setupCell(viewModel: vm) { [weak self] entity in
+                guard let self = self, let entity = entity else { return }
+                self.viewModel.upadteFavorite(entity: entity)
+            }
 
-            cell.setupCell(entity: cellVM)
             
 //            cell.backgroundColor = .cyan
             return cell
