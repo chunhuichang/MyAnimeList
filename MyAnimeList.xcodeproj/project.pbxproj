@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E12EAD1F28091902004A78FE /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD1E28091902004A78FE /* WebViewModel.swift */; };
 		E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41942801C12D007DC0BB /* AppDelegate.swift */; };
 		E1EC41972801C12D007DC0BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41962801C12D007DC0BB /* SceneDelegate.swift */; };
 		E1EC41992801C12D007DC0BB /* TopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41982801C12D007DC0BB /* TopListViewController.swift */; };
@@ -32,6 +33,7 @@
 		E1EDE14628080EA10095A68D /* BaseCellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE14528080EA10095A68D /* BaseCellable.swift */; };
 		E1EDE14828080EB20095A68D /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE14728080EB20095A68D /* BaseCollectionViewCell.swift */; };
 		E1EDE14A2808F9740095A68D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1492808F9740095A68D /* AppCoordinator.swift */; };
+		E1EDE14C280900FB0095A68D /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE14B280900FB0095A68D /* DetailCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E12EAD1E28091902004A78FE /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		E1EC41912801C12D007DC0BB /* MyAnimeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAnimeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EC41942801C12D007DC0BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1EC41962801C12D007DC0BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 		E1EDE14528080EA10095A68D /* BaseCellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellable.swift; sourceTree = "<group>"; };
 		E1EDE14728080EB20095A68D /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		E1EDE1492808F9740095A68D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		E1EDE14B280900FB0095A68D /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,7 @@
 				E1EC41942801C12D007DC0BB /* AppDelegate.swift */,
 				E1EC41962801C12D007DC0BB /* SceneDelegate.swift */,
 				E1EDE1492808F9740095A68D /* AppCoordinator.swift */,
+				E1EDE14B280900FB0095A68D /* DetailCoordinator.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				E1EDE0D428040A090095A68D /* WebViewController.swift */,
+				E12EAD1E28091902004A78FE /* WebViewModel.swift */,
 			);
 			path = WebView;
 			sourceTree = "<group>";
@@ -449,7 +455,9 @@
 				E1EDE11E2805AF390095A68D /* MyAnimeList.xcdatamodeld in Sources */,
 				E1EC41C52802793A007DC0BB /* AutoLayoutDSL.swift in Sources */,
 				E1EDE13928067F540095A68D /* RemoteDataLoader.swift in Sources */,
+				E12EAD1F28091902004A78FE /* WebViewModel.swift in Sources */,
 				E1EDE1402806C4D80095A68D /* TopListViewModel.swift in Sources */,
+				E1EDE14C280900FB0095A68D /* DetailCoordinator.swift in Sources */,
 				E1EDE1362806689F0095A68D /* TopListUseCase.swift in Sources */,
 				E1EDE1422807A6D70095A68D /* TopListMockRepository.swift in Sources */,
 				E1EDE14A2808F9740095A68D /* AppCoordinator.swift in Sources */,

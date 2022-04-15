@@ -36,6 +36,7 @@ public protocol TopListVMManager {
 
 public final class TopListViewModel: TopListVMInput, TopListVMOutput, TopListVMManager {
     
+    public weak var delegate: AppCoordinatorDelegate?
     var usecase: TopListUseCase?
     let typeNames: [MALTypeEnum] = [.anime, .manga, .favorite]
     let typeSubtype = ["anime":["airing","upcoming","tv","movie","ova","special","bypopularity","favorite"],"manga":["manga","novels","oneshots","doujin","manhwa","manhua","bypopularity","favorite"],"favorite":[]]
@@ -129,11 +130,10 @@ extension TopListViewModel {
         self.subtypeData.value = tmpSubtypeData
         self.fetchDataTrigger.value = ()
     }
-    
-    public func goToWebView(url: String) {
-        // TODO: use coordinator
+}
+
+extension TopListViewModel {
+    public func gotoWebVC(entity: TopEntity) {
+        self.delegate?.gotoWebVC(entity: entity)
     }
-    
-    
-    
 }

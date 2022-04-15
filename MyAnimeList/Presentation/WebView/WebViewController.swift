@@ -10,7 +10,7 @@ import WebKit
 
 class WebViewController: UIViewController {
     
-    private var urlString: String
+    private var viewModel: WebViewModel
     
     private lazy var backButton: UIBarButtonItem = {
         return UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(self.webGoBack))
@@ -46,8 +46,8 @@ class WebViewController: UIViewController {
         return view
     }()
     
-    init(urlString: String) {
-        self.urlString = urlString
+    init(viewModel: WebViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -69,13 +69,13 @@ class WebViewController: UIViewController {
 }
 
 // MARK: UI Setup
-extension WebViewController {
+private extension WebViewController {
     private func setupUI() {
         self.view.backgroundColor = .white
         self.navigationItem.title = "MAL"
         self.navigationItem.leftBarButtonItems = [backButton, nextButton]
         self.navigationItem.rightBarButtonItem = closeButton
-        if let url = URL(string: self.urlString) {
+        if let url = URL(string: self.viewModel.urlString) {
             self.webView.load(URLRequest(url: url))
         }
         

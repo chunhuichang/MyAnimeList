@@ -195,9 +195,7 @@ extension TopListViewController: UICollectionViewDelegate {
         if collectionView == self.subtypeCollectionView {
             self.viewModel.subtypeClick(index: indexPath.row)
         } else if collectionView == self.listCollectionView, let cellVM = self.viewModel.listData.value?[indexPath.row] {
-            let nav = UINavigationController(rootViewController: WebViewController(urlString: cellVM.url))
-            nav.modalPresentationStyle = .fullScreen
-            self.present(nav, animated: true, completion: nil)
+            self.viewModel.gotoWebVC(entity: cellVM)
         }
     }
 }

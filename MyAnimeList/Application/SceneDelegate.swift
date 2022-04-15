@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var appCoordinator: AppCoordinator?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -18,11 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
-        let repository = TopListMockRepository()
-        let usecase = MainTopListUseCase(repository: repository)
-        let vm = TopListViewModel(usecase)
-        
-        window?.rootViewController = TopListViewController(viewModel: vm)
+        self.appCoordinator = AppCoordinator()
+        self.appCoordinator?.start()
+        self.window?.rootViewController = self.appCoordinator?.rootVC
         window?.makeKeyAndVisible()
     }
 
