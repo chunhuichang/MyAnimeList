@@ -8,13 +8,11 @@
 import UIKit
 
 class ItemCell: UICollectionViewCell {
-    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18, weight: .medium)
         label.textColor = .black
         label.numberOfLines = 2
-        label.text = "titleLabel"
         return label
     }()
     
@@ -43,7 +41,6 @@ class ItemCell: UICollectionViewCell {
             let label = UILabel()
             label.font = .systemFont(ofSize: 20, weight: .regular)
             label.textColor = .systemGray
-            label.text = "date\(text)"
             views.append(label)
         }
         return views
@@ -70,7 +67,6 @@ class ItemCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 20, weight: .medium)
         label.textColor = .white
         label.backgroundColor = .blue
-        label.text = "# 14"
         label.textAlignment = .center
         return label
     }()
@@ -85,6 +81,8 @@ class ItemCell: UICollectionViewCell {
         button.contentHorizontalAlignment = .fill
         return button
     }()
+    
+    private var viewModel: ItemCellVM?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -127,14 +125,16 @@ class ItemCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-        
+}
+
+extension ItemCell {
     func setupCell(entity: TopEntity) {
         self.titleLabel.text = entity.title
-//        self.imageView.image
+        //        self.imageView.image
         self.rankLabel.text = "# \(entity.rank)"
-        self.starButton.isSelected = entity.isFavorite 
+        self.starButton.isSelected = entity.isFavorite
         self.dateDetails[0].text = entity.startDate
-
+        
         if let endDate = entity.endDate {
             self.dateDetails[1].text = endDate
         } else {
@@ -143,3 +143,16 @@ class ItemCell: UICollectionViewCell {
     }
 }
 
+public final class ItemCellVM {
+    var isFavorite: Box<Bool> = Box(false)
+    var entity: Box<TopEntity> = Box(nil)
+    
+    public init(entity: TopEntity) {
+        self.isFavorite.value = entity.isFavorite
+        self.entity.value = entity
+    }
+    
+    public func upadteFavorite(isFavorite: Bool) {
+        self.isFavorite.value?.toggle()
+    }
+}

@@ -18,7 +18,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
-        window?.rootViewController = TopListViewController(viewModel: "TEST")
+        let repository = TopListMockRepository()
+        let usecase = MainTopListUseCase(repository: repository)
+        let vm = TopListViewModel(usecase)
+        
+        window?.rootViewController = TopListViewController(viewModel: vm)
         window?.makeKeyAndVisible()
     }
 

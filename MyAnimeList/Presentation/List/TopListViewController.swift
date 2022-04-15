@@ -9,100 +9,68 @@ import UIKit
 
 class TopListViewController: UIViewController {
     
-    private var viewModel: String
+    private var viewModel: TopListViewModel
+//    private let typeNames = ["Anime","Manga","Favorite"]
+//    private let typeSubtype = ["anime":["airing","upcoming","tv","movie","ova","special","bypopularity","favorite"],"manga":["manga","novels","oneshots","doujin","manhwa","manhua","bypopularity","favorite"],"favorite":[]]
+//    private var tmpData = ["airing","upcoming","tv","movie","ova","special","bypopularity","favorite"]
     
-    private let typeNames = ["Anime","Manga","Favorite"]
-    private let typeSubtype = ["anime":["airing","upcoming","tv","movie","ova","special","bypopularity","favorite"],"manga":["manga","novels","oneshots","doujin","manhwa","manhua","bypopularity","favorite"],"favorite":[]]
-    private var tmpData = ["airing","upcoming","tv","movie","ova","special","bypopularity","favorite"]
     
-    
-    var horizontalScrollLayoutSection: NSCollectionLayoutSection {
-            let space: Double = 10
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(200), heightDimension: .absolute(318))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = space
-            section.contentInsets = NSDirectionalEdgeInsets(top: space, leading: space, bottom: space, trailing: space)
-            section.orthogonalScrollingBehavior = .continuous
-            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
-            let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-            section.boundarySupplementaryItems = [header]
-            return section
-    }
-        
-    var verticalScrollLayoutSection: NSCollectionLayoutSection {
-            let space: Double = 10
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/2))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = space
-            section.contentInsets = NSDirectionalEdgeInsets(top: space, leading: space, bottom: space, trailing: space)
-            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(10))
-            let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-            section.boundarySupplementaryItems = [header]
-            return section
-    }
-
-    
-    private lazy var collectionView: UICollectionView = {
+    private lazy var subtypeCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         //section的間距
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+//        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         //cell間距
         layout.minimumLineSpacing = 5
         //cell 長寬
-        layout.itemSize = CGSize(width: 100, height: 30)
+//        layout.itemSize = CGSize(width: 100, height: 30)
         //layout.estimatedItemSize
         //滑動的方向
         layout.scrollDirection = .horizontal
         
-        
-        let space: Double = 10
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(200), heightDimension: .fractionalHeight(1))
-//        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-        
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 2)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = space
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: space, bottom: 0, trailing: space)
-        let configuration = UICollectionViewCompositionalLayoutConfiguration()
-        configuration.scrollDirection = .horizontal
-        let compositionalLayout =  UICollectionViewCompositionalLayout(section: section, configuration: configuration)
-        
-        let dynamicLayout = UICollectionViewCompositionalLayout { [unowned self] section, environment in
-            if section.isMultiple(of: 2) {
-                return self.horizontalScrollLayoutSection
-            } else {
-                return self.verticalScrollLayoutSection
-            }
-        }
-        
-        let view = UICollectionView(frame: .zero, collectionViewLayout: dynamicLayout)
-        view.register(ItemCell.self, forCellWithReuseIdentifier: "\(ItemCell.self)")
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.register(SubtypeCell.self, forCellWithReuseIdentifier: "\(SubtypeCell.self)")
         view.delegate = self
         view.dataSource = self
-        view.isPagingEnabled = true
-        view.collectionViewLayout.invalidateLayout()
+//        view.backgroundColor = .systemPink
+//        view.isPagingEnabled = true
+//        view.collectionViewLayout.invalidateLayout()
         return view
     }()
     
-    private lazy var types: [TypeView] = {
-        //only use in struct
-//        return [TypeView](repeating: TypeView(title: "QWERASDF"), count: 3)
+    private lazy var listCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        //section的間距
+//        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        //cell間距
+        layout.minimumLineSpacing = 5
+        //cell 長寬
+//        layout.itemSize = CGSize(width: 100, height: 30)
+        //layout.estimatedItemSize
+        //滑動的方向
+        layout.scrollDirection = .vertical
         
-        let typeName = typeSubtype.keys
-        print("typeName=\(typeName)")
-        var views = [TypeView]()
-        for type in typeNames {
-            let view = TypeView(title: type)
-            views.append(view)
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.register(ItemCell.self, forCellWithReuseIdentifier: "\(ItemCell.self)")
+        view.delegate = self
+        view.dataSource = self
+//        view.isPagingEnabled = true
+//        view.collectionViewLayout.invalidateLayout()
+        return view
+    }()
+        
+    private lazy var types: [UIButton] = {
+        var views = [UIButton]()
+        for (index, type) in self.viewModel.typeNames.enumerated() {
+            let button = UIButton()
+            button.backgroundColor = .lightGray
+            button.setTitle("\(type.rawValue)", for: .normal)
+            button.setTitleColor(.darkGray, for: .normal)
+            button.titleLabel?.font = .systemFont(ofSize: 18)
+            button.layer.cornerRadius = 5.0
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.tag = index
+            button.addTarget(nil, action: #selector(selected(_:)), for: .touchUpInside)
+            views.append(button)
         }
         return views
     }()
@@ -115,22 +83,16 @@ class TopListViewController: UIViewController {
         return topStackView
     }()
     
-    private lazy var button: UIButton = {
-        let button = UIButton()
-        button.setTitle("Button", for: .normal)
-        button.addTarget(self, action: #selector(handleButtonTapped), for: .touchUpInside)
-        button.setTitleColor(.darkGray, for: .normal)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 5.0
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    private lazy var heightConstraint: NSLayoutConstraint = {
+        subtypeCollectionView.heightAnchor.constraint(equalToConstant: 50)
     }()
-    
-    @objc private func handleButtonTapped() {
-        print("Button tapped")
+        
+    @objc private func selected(_ sender: UIButton) {
+        print("Button tapped:\(sender.tag)")
+        self.viewModel.typeClick(index: sender.tag)
     }
     
-    init(viewModel: String) {
+    init(viewModel: TopListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -143,59 +105,157 @@ class TopListViewController: UIViewController {
         super.viewDidLoad()
 
         self.setupUI()
+        self.UIBinding()
+        self.viewModel.typeClick(index: 0)
     }
-    
+}
+
+// MARK: UI Setting
+private extension TopListViewController {
     private func setupUI() {
         self.view.backgroundColor = .white
         
-        view.addSubview(topStackView, anchors: [.leadingSafeArea(20), .trailingSafeArea(-20),.topSafeArea(10),.height(50)])
+        [topStackView, subtypeCollectionView, listCollectionView].forEach { [superView = self.view] in
+            superView?.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+
+        NSLayoutConstraint.activate([
+            topStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            topStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            topStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            topStackView.heightAnchor.constraint(equalToConstant: 50),
+            
+            subtypeCollectionView.topAnchor.constraint(equalTo: topStackView.bottomAnchor, constant: 10),
+            subtypeCollectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            subtypeCollectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+//            subtypeCollectionView.heightAnchor.constraint(equalToConstant: 50),
+            heightConstraint,
+
+            listCollectionView.topAnchor.constraint(equalTo: subtypeCollectionView.bottomAnchor, constant: 10),
+            listCollectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            listCollectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            listCollectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+    }
+}
+
+// MARK: UI Binding
+private extension TopListViewController {
+    
+    private func UIBinding() {
         
-        view.addSubview(collectionView, anchors: [.leadingSafeArea(20), .trailingSafeArea(-20),.topSafeArea(70),.bottomSafeArea(-50)])
+        let output = self.viewModel.output
+
+//        output.isLoading.binding {[weak self] newValue, _ in
+//            guard let self = self else { return }
+//            DispatchQueue.main.async {
+//                self.currentTimeZoneLabel.text = newValue
+//            }
+//        }
+                
+        output.isSubTypeHidden.binding {[weak self] newValue, _ in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                let isHidden = newValue ?? false
+                self.subtypeCollectionView.isHidden = isHidden
+                self.heightConstraint.constant = isHidden ? 0 : 50
+            }
+        }
         
+        output.subtypeData.binding {[weak self] _, _ in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.subtypeCollectionView.reloadData()
+            }
+        }
+        
+        output.listData.binding {[weak self] _, _ in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.listCollectionView.reloadData()
+            }
+        }
+                
+        output.typeIndex.binding {[weak self] newValue, _ in
+            guard let self = self, let newValue = newValue else { return }
+//            print("typeIndex=\(newValue),subtypeData=\(self.viewModel.subtypeData.value)")
+            DispatchQueue.main.async {
+                self.types.forEach { $0.backgroundColor = .lightGray }
+                self.types[newValue].backgroundColor = .systemPink
+            }
+        }
     }
 }
 
 extension TopListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+//        print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
         
-        let nav = UINavigationController(rootViewController: WebViewController(urlString: "https://myanimelist.net/manga/23390/Shingeki_no_Kyojin"))
-        nav.modalPresentationStyle = .fullScreen
-        self.present(nav, animated: true, completion: nil)
+        if collectionView == self.subtypeCollectionView {
+            self.viewModel.subtypeClick(index: indexPath.row)
+        } else if collectionView == self.listCollectionView, let cellVM = self.viewModel.listData.value?[indexPath.row] {
+            let nav = UINavigationController(rootViewController: WebViewController(urlString: cellVM.url))
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
+        }
     }
 }
 
 extension TopListViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        tmpData.count
+        if collectionView == self.subtypeCollectionView {
+            return self.viewModel.subtypeData.value?.count ?? 0
+        } else if collectionView == self.listCollectionView {
+            return self.viewModel.listData.value?.count ?? 0
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(ItemCell.self)", for: indexPath) as? ItemCell {
-            //tmpData[indexPath.row]
+        if collectionView == self.listCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(ItemCell.self)", for: indexPath) as? ItemCell,
+                  let cellVM = self.viewModel.listData.value?[indexPath.row] else {
+                return UICollectionViewCell()
+            }
 
-            cell.setupCell(entity: TopEntity(malID: 23390, rank: 2, title: "Imaizumin Chi wa Douyara Gal no Tamariba ni Natteru Rashii", url: "https://myanimelist.net/manga/124483/Imaizumin_Chi_wa_Douyara_Gal_no_Tamariba_ni_Natteru_Rashii", imageURL: "https://cdn.myanimelist.net/images/manga/1/242797.jpg?s=71736414410e4600ca16d063fb9e67e1", type: "Doujinshi", startDate: "Aug 2019", isFavorite: true))
+            cell.setupCell(entity: cellVM)
             
-            cell.backgroundColor = .cyan
+//            cell.backgroundColor = .cyan
             return cell
+        } else if collectionView == self.subtypeCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(SubtypeCell.self)", for: indexPath) as? SubtypeCell ,
+                  let cellVM = self.viewModel.subtypeData.value?[indexPath.row] else {
+                return UICollectionViewCell()
+            }
+            
+            cell.setupCell(cellVM.0, isSelected: cellVM.1)
+            
+            cell.layer.cornerRadius = 5.0
+//            cell.backgroundColor = .yellow
+            return cell
+        } else {
+            return UICollectionViewCell()
         }
-        fatalError("Unable to dequeue subclassed cell")
+//        fatalError("Unable to dequeue subclassed cell")
     }
 }
 
-//extension ViewController: UICollectionViewDelegateFlowLayout {
-////    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-////        CGSize(width: collectionView.frame.width, height: 60)
-////    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        CGSize(width: 100, height: 50)
+extension TopListViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        CGSize(width: collectionView.frame.width, height: 60)
 //    }
-//}
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == self.subtypeCollectionView {
+            return CGSize(width: 100, height: collectionView.frame.height - 5)
+        } else if collectionView == self.listCollectionView {
+            return CGSize(width: collectionView.frame.width - 10, height: collectionView.frame.height / 3)
+        }
+
+        return CGSize(width: collectionView.frame.width - 10, height: collectionView.frame.height / 3)
+    }
+}
 
 
 
@@ -226,4 +286,3 @@ class TypeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-

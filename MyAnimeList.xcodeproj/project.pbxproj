@@ -29,6 +29,9 @@
 		E1EDE1402806C4D80095A68D /* TopListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE13F2806C4D80095A68D /* TopListViewModel.swift */; };
 		E1EDE1422807A6D70095A68D /* TopListMockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1412807A6D70095A68D /* TopListMockRepository.swift */; };
 		E1EDE1442807B5AE0095A68D /* SubtypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1432807B5AE0095A68D /* SubtypeCell.swift */; };
+		E1EDE14628080EA10095A68D /* BaseCellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE14528080EA10095A68D /* BaseCellable.swift */; };
+		E1EDE14828080EB20095A68D /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE14728080EB20095A68D /* BaseCollectionViewCell.swift */; };
+		E1EDE14A2808F9740095A68D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1492808F9740095A68D /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +77,9 @@
 		E1EDE13F2806C4D80095A68D /* TopListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListViewModel.swift; sourceTree = "<group>"; };
 		E1EDE1412807A6D70095A68D /* TopListMockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListMockRepository.swift; sourceTree = "<group>"; };
 		E1EDE1432807B5AE0095A68D /* SubtypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtypeCell.swift; sourceTree = "<group>"; };
+		E1EDE14528080EA10095A68D /* BaseCellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellable.swift; sourceTree = "<group>"; };
+		E1EDE14728080EB20095A68D /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		E1EDE1492808F9740095A68D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +165,7 @@
 			children = (
 				E1EC41942801C12D007DC0BB /* AppDelegate.swift */,
 				E1EC41962801C12D007DC0BB /* SceneDelegate.swift */,
+				E1EDE1492808F9740095A68D /* AppCoordinator.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -230,6 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				E1EDE1282805B3910095A68D /* Box.swift */,
+				E1EDE14528080EA10095A68D /* BaseCellable.swift */,
+				E1EDE14728080EB20095A68D /* BaseCollectionViewCell.swift */,
 			);
 			path = Binding;
 			sourceTree = "<group>";
@@ -443,12 +452,15 @@
 				E1EDE1402806C4D80095A68D /* TopListViewModel.swift in Sources */,
 				E1EDE1362806689F0095A68D /* TopListUseCase.swift in Sources */,
 				E1EDE1422807A6D70095A68D /* TopListMockRepository.swift in Sources */,
+				E1EDE14A2808F9740095A68D /* AppCoordinator.swift in Sources */,
 				E1EDE0D528040A090095A68D /* WebViewController.swift in Sources */,
+				E1EDE14828080EB20095A68D /* BaseCollectionViewCell.swift in Sources */,
 				E1EDE134280666870095A68D /* TopListRepository.swift in Sources */,
 				E1EDE0D32803FCD20095A68D /* ItemCell.swift in Sources */,
 				E1EC41992801C12D007DC0BB /* TopListViewController.swift in Sources */,
 				E1EDE1292805B3910095A68D /* Box.swift in Sources */,
 				E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */,
+				E1EDE14628080EA10095A68D /* BaseCellable.swift in Sources */,
 				E1EC41972801C12D007DC0BB /* SceneDelegate.swift in Sources */,
 				E1EDE12F2805CA520095A68D /* TopEntity.swift in Sources */,
 				E1EDE1442807B5AE0095A68D /* SubtypeCell.swift in Sources */,

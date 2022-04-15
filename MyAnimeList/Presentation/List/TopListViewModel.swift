@@ -23,10 +23,10 @@ public protocol TopListVMOutput {
     //    var alertMsg: Box<(String, String)> { get }
     var isLoading: Box<Bool> { get }
     var isSubTypeHidden: Box<Bool> { get }
-    var subtypeData: Box<[String]> { get }
+    var subtypeData: Box<[(String,Bool)]> { get }
     var listData: Box<[TopEntity]> { get }
     var typeIndex: Box<Int> { get }
-    var subtypeIndex: Box<Int> { get }
+//    var subtypeIndex: Box<Int> { get }
 }
 // Manager
 public protocol TopListVMManager {
@@ -41,9 +41,11 @@ public final class TopListViewModel: TopListVMInput, TopListVMOutput, TopListVMM
     let typeSubtype = ["anime":["airing","upcoming","tv","movie","ova","special","bypopularity","favorite"],"manga":["manga","novels","oneshots","doujin","manhwa","manhua","bypopularity","favorite"],"favorite":[]]
     private var subtypeNames: [String] = [String]()
     private var page = 0
+    private var subtypeIndex = 0
     
     public init(_ usecase: TopListUseCase) {
         self.usecase = usecase
+        self.bindingInOut()
     }
     
     public var input: TopListVMInput {
@@ -60,17 +62,18 @@ public final class TopListViewModel: TopListVMInput, TopListVMOutput, TopListVMM
     //output
     public var isLoading: Box<Bool> = Box(false)
     public var isSubTypeHidden: Box<Bool> = Box(false)
-    public var subtypeData: Box<[String]> = Box([String]())
+    public var subtypeData: Box<[(String,Bool)]> = Box([(String,Bool)]())
     public var listData: Box<[TopEntity]> = Box([TopEntity]())
-    public var typeIndex: Box<Int> = Box(0)
-    public var subtypeIndex: Box<Int> = Box(0)
+    public var typeIndex: Box<Int> = Box(nil)
+//    public var subtypeIndex: Box<Int> = Box(nil)
 }
 
 extension TopListViewModel {
     private func bindingInOut() {
         fetchDataTrigger.binding(trigger: false) { [weak self]_, _ in
             guard let self = self else { return }
-            
+            print("fetchDataTrigger typeIndex=\(self.typeIndex.value)")
+//            print("subtypeIndex=\(self.subtypeIndex.value)")
             var params = [String: String]()
             params["type"] = "\(self.typeNames[self.typeIndex.value ?? 0])"
             params["subtype"] = ""
@@ -105,11 +108,25 @@ extension TopListViewModel {
     // button add target how to set index to func
     public func typeClick(index: Int) {
         self.typeIndex.value = index
-        self.subtypeData.value = self.typeSubtype["\(self.typeNames[index])"]
+        if let subtypes = self.typeSubtype["\(self.typeNames[index])"], !subtypes.isEmpty {
+            self.subtypeData.value = subtypes.map { ($0,false) }
+            self.subtypeClick(index: 0)
+            self.isSubTypeHidden.value = false
+        } else {
+            self.subtypeData.value = nil
+            self.isSubTypeHidden.value = true
+        }
     }
     
     public func subtypeClick(index: Int) {
-        self.subtypeIndex.value = index
+        guard var tmpSubtypeData = self.subtypeData.value else {
+            return
+        }
+        self.subtypeIndex = index
+        tmpSubtypeData = tmpSubtypeData.map{ ($0.0,false) }
+        tmpSubtypeData[index].1 = true
+        
+        self.subtypeData.value = tmpSubtypeData
         self.fetchDataTrigger.value = ()
     }
     
