@@ -21,7 +21,6 @@
 		E1EC41AC2801C132007DC0BB /* MyAnimeListUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41AB2801C132007DC0BB /* MyAnimeListUseCaseTests.swift */; };
 		E1EC41B62801C132007DC0BB /* MyAnimeListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41B52801C132007DC0BB /* MyAnimeListUITests.swift */; };
 		E1EC41B82801C132007DC0BB /* MyAnimeListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41B72801C132007DC0BB /* MyAnimeListUITestsLaunchTests.swift */; };
-		E1EC41C52802793A007DC0BB /* AutoLayoutDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41C42802793A007DC0BB /* AutoLayoutDSL.swift */; };
 		E1EDE0D32803FCD20095A68D /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE0D22803FCD20095A68D /* ItemCell.swift */; };
 		E1EDE0D528040A090095A68D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE0D428040A090095A68D /* WebViewController.swift */; };
 		E1EDE11E2805AF390095A68D /* MyAnimeList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE11C2805AF390095A68D /* MyAnimeList.xcdatamodeld */; };
@@ -75,7 +74,6 @@
 		E1EC41B12801C132007DC0BB /* MyAnimeListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyAnimeListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EC41B52801C132007DC0BB /* MyAnimeListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnimeListUITests.swift; sourceTree = "<group>"; };
 		E1EC41B72801C132007DC0BB /* MyAnimeListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnimeListUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		E1EC41C42802793A007DC0BB /* AutoLayoutDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutDSL.swift; sourceTree = "<group>"; };
 		E1EDE0D22803FCD20095A68D /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		E1EDE0D428040A090095A68D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		E1EDE11D2805AF390095A68D /* MyAnimeList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyAnimeList.xcdatamodel; sourceTree = "<group>"; };
@@ -265,7 +263,6 @@
 		E1EDE1262805B37B0095A68D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				E1EC41C42802793A007DC0BB /* AutoLayoutDSL.swift */,
 				E1EDE1272805B3860095A68D /* Binding */,
 			);
 			path = Utils;
@@ -487,7 +484,6 @@
 			files = (
 				E1EDE11E2805AF390095A68D /* MyAnimeList.xcdatamodeld in Sources */,
 				E12EAD2128092F50004A78FE /* ItemCellVM.swift in Sources */,
-				E1EC41C52802793A007DC0BB /* AutoLayoutDSL.swift in Sources */,
 				E1EDE13928067F540095A68D /* RemoteDataLoader.swift in Sources */,
 				E12EAD1F28091902004A78FE /* WebViewModel.swift in Sources */,
 				E12EAD26280936D6004A78FE /* ApiConfig.swift in Sources */,

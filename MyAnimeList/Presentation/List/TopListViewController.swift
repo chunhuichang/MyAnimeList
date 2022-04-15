@@ -247,8 +247,21 @@ class TypeView: UIView {
     
     required init(title: String) {
         super.init(frame: .zero)
-        addSubview(typeBackgroundView, anchors: [.leading(0), .trailing(0),.top(0),.bottom(0)])
-        addSubview(typeLabel, anchors: [.centerX(0), .centerY(0)])
+        
+        [typeBackgroundView, typeLabel].forEach {
+            addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        NSLayoutConstraint.activate([
+            typeBackgroundView.topAnchor.constraint(equalTo: topAnchor),
+            typeBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            typeBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            typeBackgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            typeLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            typeLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+        ])
         
         self.typeLabel.text = title
     }

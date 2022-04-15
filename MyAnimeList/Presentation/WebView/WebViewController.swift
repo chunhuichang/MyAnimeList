@@ -79,9 +79,25 @@ private extension WebViewController {
             self.webView.load(URLRequest(url: url))
         }
         
-        view.addSubview(webView, anchors: [.leadingSafeArea(0), .trailingSafeArea(0),.topSafeArea(0),.bottomSafeArea(0)])
-        view.addSubview(webLoadingActivity, anchors: [.centerX(0), .centerY(0)])
-        view.addSubview(webLoadingActivityContainer, anchors: [.centerX(0), .centerY(0), .width(80), .height(80)])
+        [webView, webLoadingActivity, webLoadingActivityContainer].forEach {
+            self.view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        NSLayoutConstraint.activate([
+            webView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            webView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            webView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            
+            webLoadingActivity.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            webLoadingActivity.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            
+            webLoadingActivityContainer.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            webLoadingActivityContainer.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            webLoadingActivityContainer.widthAnchor.constraint(equalToConstant: 80),
+            webLoadingActivityContainer.heightAnchor.constraint(equalToConstant: 80),
+        ])
     }
     
     private func setupToolbarItemsEnable() {

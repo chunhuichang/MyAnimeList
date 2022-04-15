@@ -22,7 +22,15 @@ class SubtypeCell: UICollectionViewCell {
     }
     
     func setupUI() {
-        addSubview(label, anchors: [.centerX(0), .centerY(0)])
+        [label].forEach {
+            addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: centerYAnchor),
+        ])
     }
     
     required init?(coder: NSCoder) {
