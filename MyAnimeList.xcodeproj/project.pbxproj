@@ -13,6 +13,8 @@
 		E12EAD26280936D6004A78FE /* ApiConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD25280936D6004A78FE /* ApiConfig.swift */; };
 		E12EAD2928093804004A78FE /* TopDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD2828093804004A78FE /* TopDTO+Mapping.swift */; };
 		E12EAD2C28094FF5004A78FE /* TopApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD2B28094FF5004A78FE /* TopApi.swift */; };
+		E12EAD34280B045A004A78FE /* PosterImagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD33280B045A004A78FE /* PosterImagesRepository.swift */; };
+		E12EAD36280B0473004A78FE /* MainPosterImagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD35280B0473004A78FE /* MainPosterImagesRepository.swift */; };
 		E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41942801C12D007DC0BB /* AppDelegate.swift */; };
 		E1EC41972801C12D007DC0BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41962801C12D007DC0BB /* SceneDelegate.swift */; };
 		E1EC41992801C12D007DC0BB /* TopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41982801C12D007DC0BB /* TopListViewController.swift */; };
@@ -62,6 +64,8 @@
 		E12EAD25280936D6004A78FE /* ApiConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConfig.swift; sourceTree = "<group>"; };
 		E12EAD2828093804004A78FE /* TopDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopDTO+Mapping.swift"; sourceTree = "<group>"; };
 		E12EAD2B28094FF5004A78FE /* TopApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopApi.swift; sourceTree = "<group>"; };
+		E12EAD33280B045A004A78FE /* PosterImagesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterImagesRepository.swift; sourceTree = "<group>"; };
+		E12EAD35280B0473004A78FE /* MainPosterImagesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPosterImagesRepository.swift; sourceTree = "<group>"; };
 		E1EC41912801C12D007DC0BB /* MyAnimeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAnimeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EC41942801C12D007DC0BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1EC41962801C12D007DC0BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				E12EAD2328093030004A78FE /* MainTopListRepository.swift */,
+				E12EAD35280B0473004A78FE /* MainPosterImagesRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -333,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				E1EDE133280666870095A68D /* TopListRepository.swift */,
+				E12EAD33280B045A004A78FE /* PosterImagesRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -488,6 +494,7 @@
 				E12EAD1F28091902004A78FE /* WebViewModel.swift in Sources */,
 				E12EAD26280936D6004A78FE /* ApiConfig.swift in Sources */,
 				E1EDE1402806C4D80095A68D /* TopListViewModel.swift in Sources */,
+				E12EAD36280B0473004A78FE /* MainPosterImagesRepository.swift in Sources */,
 				E1EDE14C280900FB0095A68D /* DetailCoordinator.swift in Sources */,
 				E1EDE1362806689F0095A68D /* TopListUseCase.swift in Sources */,
 				E1EDE1422807A6D70095A68D /* TopListMockRepository.swift in Sources */,
@@ -497,6 +504,7 @@
 				E1EDE134280666870095A68D /* TopListRepository.swift in Sources */,
 				E1EDE0D32803FCD20095A68D /* ItemCell.swift in Sources */,
 				E1EC41992801C12D007DC0BB /* TopListViewController.swift in Sources */,
+				E12EAD34280B045A004A78FE /* PosterImagesRepository.swift in Sources */,
 				E1EDE1292805B3910095A68D /* Box.swift in Sources */,
 				E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */,
 				E1EC41972801C12D007DC0BB /* SceneDelegate.swift in Sources */,

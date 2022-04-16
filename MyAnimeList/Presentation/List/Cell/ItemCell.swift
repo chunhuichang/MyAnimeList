@@ -144,8 +144,6 @@ extension ItemCell {
             vm.entity.binding(listener: { [weak self] (newValue, _) in
                 guard let self = self, let entity = newValue else { return }
                 self.titleLabel.text = entity.title
-                //TODO: fetch imageurl
-                //        self.imageView.image
                 self.rankLabel.text = "# \(entity.rank)"
                 self.starButton.isSelected = entity.isFavorite
                 self.dateDetails[0].text = entity.startDate
@@ -155,6 +153,13 @@ extension ItemCell {
                 } else {
                     self.dateDetails[1].text = ""
                 }
+            })
+            
+            vm.imageData.binding(listener: { [weak self] (newValue, _) in
+                guard let self = self else { return }
+                self.imageView.image = nil
+                guard let data = newValue else { return }
+                self.imageView.image = UIImage(data: data)
             })
             
             vm.isFavorite.binding(listener: { [weak self] (newValue, _) in
@@ -170,6 +175,7 @@ extension ItemCell {
         self.viewModel = viewModel
         self.completion = completion
         self.binding()
+        self.viewModel?.fetchImage()
     }
 }
 

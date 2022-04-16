@@ -31,8 +31,10 @@ public enum DataLoaderResult<T> {
 
 public protocol DataServiceLoader {
     typealias CompletionHanlder<T> = (DataLoaderResult<T>) -> Void
+    typealias DonwloadCompletionHanlder = (Data?, URLResponse?, Error?) -> Void
     
     func load<T: Decodable>(type: T.Type, config: ApiConfig, completion :@escaping CompletionHanlder<T>)
+    func download(from url: URL, completion: @escaping DonwloadCompletionHanlder)
 }
 
 public final class RemoteDataLoader: DataServiceLoader {
@@ -81,6 +83,14 @@ public final class RemoteDataLoader: DataServiceLoader {
                 return completion(.failure(.noResponse))
             }
             
+        }.resume()
+    }
+    
+    public func download(from url: URL, completion: @escaping DonwloadCompletionHanlder) {
+        URLSession.shared.dataTask(with: url) { data, resp, error in
+            DispatchQueue.main.async {
+                completion(data, resp, error)
+            }
         }.resume()
     }
 }

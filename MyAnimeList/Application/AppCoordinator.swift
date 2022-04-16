@@ -15,13 +15,14 @@ public final class AppCoordinator: AppCoordinatorDelegate {
     public var rootVC: UIViewController?
     
     public func start() {
-        let repository = MainTopListRepository()
+        let loadDataLoader = RemoteDataLoader()
+        let repository = MainTopListRepository(loadDataLoader: loadDataLoader)
         //Mock
 //        let repository = TopListMockRepository()
         let usecase = MainTopListUseCase(repository: repository)
         let vm = TopListViewModel(usecase)
         vm.delegate = self
-        self.rootVC =  TopListViewController(viewModel: vm)
+        self.rootVC =  TopListViewController(viewModel: vm, posterImagesRepository: MainPosterImagesRepository(loadDataLoader: loadDataLoader))
     }
     
     public func gotoWebVC(entity: TopEntity) {

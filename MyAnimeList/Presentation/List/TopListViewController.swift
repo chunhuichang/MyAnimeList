@@ -10,6 +10,7 @@ import UIKit
 class TopListViewController: UIViewController {
     
     private var viewModel: TopListViewModel
+    private var posterImagesRepository: PosterImagesRepository?
     
     
     private lazy var subtypeCollectionView: UICollectionView = {
@@ -69,8 +70,9 @@ class TopListViewController: UIViewController {
         self.viewModel.typeClick(index: sender.tag)
     }
     
-    init(viewModel: TopListViewModel) {
+    init(viewModel: TopListViewModel, posterImagesRepository: PosterImagesRepository) {
         self.viewModel = viewModel
+        self.posterImagesRepository = posterImagesRepository
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -197,7 +199,7 @@ extension TopListViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            let vm = ItemCellVM(entity: cellVM)
+            let vm = ItemCellVM(entity: cellVM, posterImagesRepository: self.posterImagesRepository)
             cell.setupCell(viewModel: vm) { [weak self] entity in
                 guard let self = self, let entity = entity else { return }
                 self.viewModel.upadteFavorite(entity: entity)
