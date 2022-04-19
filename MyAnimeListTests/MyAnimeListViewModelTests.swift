@@ -46,6 +46,7 @@ class MyAnimeListViewModelTests: XCTestCase {
         usecase.localTopData = predicateLocalEntity
         
         let sut = makeSUT(usecase: usecase)
+        sut.subtypeData.value = [("airing",  true),("upcoming", false)]
         
         sut.listData.binding(trigger: false) { newValue, _ in
             if let entities = newValue {
@@ -55,8 +56,7 @@ class MyAnimeListViewModelTests: XCTestCase {
                 XCTFail("resultData is nil")
             }
         }
-        
-        
+
         sut.input.fetchDataTrigger.value = ()
     }
     
