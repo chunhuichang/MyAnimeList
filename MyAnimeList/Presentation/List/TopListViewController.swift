@@ -9,7 +9,7 @@ import UIKit
 
 class TopListViewController: UIViewController {
     
-    private var viewModel: TopListViewModel
+    private var viewModel: TopListVMManager
     private var posterImagesRepository: PosterImagesRepository?
     
     
@@ -39,7 +39,7 @@ class TopListViewController: UIViewController {
         
     private lazy var types: [UIButton] = {
         var views = [UIButton]()
-        for (index, type) in self.viewModel.typeNames.enumerated() {
+        for (index, type) in self.viewModel.output.typeNames.enumerated() {
             let button = UIButton()
             button.backgroundColor = .lightGray
             button.setTitle("\(type.rawValue)", for: .normal)
@@ -67,10 +67,10 @@ class TopListViewController: UIViewController {
     }()
         
     @objc private func selected(_ sender: UIButton) {
-        self.viewModel.typeClick(index: sender.tag)
+        self.viewModel.output.typeClick(index: sender.tag)
     }
     
-    init(viewModel: TopListViewModel, posterImagesRepository: PosterImagesRepository) {
+    init(viewModel: TopListVMManager, posterImagesRepository: PosterImagesRepository) {
         self.viewModel = viewModel
         self.posterImagesRepository = posterImagesRepository
         super.init(nibName: nil, bundle: nil)
@@ -85,7 +85,7 @@ class TopListViewController: UIViewController {
 
         self.setupUI()
         self.UIBinding()
-        self.viewModel.typeClick(index: 0)
+        self.viewModel.output.typeClick(index: 0)
     }
 }
 
@@ -164,7 +164,7 @@ private extension TopListViewController {
         }
         
         output.scrollToTop.binding {[weak self] _, _ in
-            guard let self = self, let dataCount = self.viewModel.listData.value?.count, dataCount > 0 else { return }
+            guard let self = self, let dataCount = self.viewModel.output.listData.value?.count, dataCount > 0 else { return }
             DispatchQueue.main.async {
                 self.listCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
             }
@@ -175,9 +175,9 @@ private extension TopListViewController {
 extension TopListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.subtypeCollectionView {
-            self.viewModel.subtypeClick(index: indexPath.row)
-        } else if collectionView == self.listCollectionView, let cellVM = self.viewModel.listData.value?[indexPath.row] {
-            self.viewModel.gotoWebVC(entity: cellVM)
+            self.viewModel.output.subtypeClick(index: indexPath.row)
+        } else if collectionView == self.listCollectionView, let cellVM = self.viewModel.output.listData.value?[indexPath.row] {
+            self.viewModel.output.gotoWebVC(entity: cellVM)
         }
     }
 }
@@ -185,9 +185,9 @@ extension TopListViewController: UICollectionViewDelegate {
 extension TopListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.subtypeCollectionView {
-            return self.viewModel.subtypeData.value?.count ?? 0
+            return self.viewModel.output.subtypeData.value?.count ?? 0
         } else if collectionView == self.listCollectionView {
-            return self.viewModel.listData.value?.count ?? 0
+            return self.viewModel.output.listData.value?.count ?? 0
         }
         return 0
     }
@@ -195,19 +195,19 @@ extension TopListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.listCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(ItemCell.self)", for: indexPath) as? ItemCell,
-                  let cellVM = self.viewModel.listData.value?[indexPath.row] else {
+                  let cellVM = self.viewModel.output.listData.value?[indexPath.row] else {
                 return UICollectionViewCell()
             }
             
             let vm = ItemCellVM(entity: cellVM, posterImagesRepository: self.posterImagesRepository)
             cell.setupCell(viewModel: vm) { [weak self] entity in
                 guard let self = self, let entity = entity else { return }
-                self.viewModel.upadteFavorite(entity: entity)
+                self.viewModel.output.upadteFavorite(entity: entity)
             }
             return cell
         } else if collectionView == self.subtypeCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(SubtypeCell.self)", for: indexPath) as? SubtypeCell ,
-                  let cellVM = self.viewModel.subtypeData.value?[indexPath.row] else {
+                  let cellVM = self.viewModel.output.subtypeData.value?[indexPath.row] else {
                 return UICollectionViewCell()
             }
             
@@ -224,7 +224,7 @@ extension TopListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.subtypeCollectionView {
             let label = UILabel(frame: CGRect.zero)
-            label.text = self.viewModel.subtypeData.value?[indexPath.row].0
+            label.text = self.viewModel.output.subtypeData.value?[indexPath.row].0
             label.sizeToFit()
             return CGSize(width: label.frame.width + 20, height: collectionView.frame.height - 5)
         }

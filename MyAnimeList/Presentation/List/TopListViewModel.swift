@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MALTypeEnum: String {
+public enum MALTypeEnum: String {
     case anime = "Anime"
     case manga = "Manga"
     case favorite = "Favorite"
@@ -26,6 +26,11 @@ public protocol TopListVMOutput {
     var listData: Box<[TopEntity]> { get }
     var typeIndex: Box<Int> { get }
     var scrollToTop: Box<()> { get }
+    var typeNames: [MALTypeEnum] { get }
+    func typeClick(index: Int)
+    func subtypeClick(index: Int)
+    func gotoWebVC(entity: TopEntity)
+    func upadteFavorite(entity: TopEntity)
 }
 // Manager
 public protocol TopListVMManager {
@@ -37,7 +42,7 @@ public final class TopListViewModel: TopListVMInput, TopListVMOutput, TopListVMM
     
     public weak var delegate: AppCoordinatorDelegate?
     var usecase: TopListUseCase?
-    let typeNames: [MALTypeEnum] = [.anime, .manga, .favorite]
+    public var typeNames: [MALTypeEnum] = [.anime, .manga, .favorite]
     let typeSubtype = ["anime":["airing","upcoming","tv","movie","ova","special","bypopularity","favorite"],"manga":["manga","novels","oneshots","doujin","manhwa","manhua","bypopularity","favorite"],"favorite":[]]
     private var subtypeNames: [String] = [String]()
     private var page = 0
