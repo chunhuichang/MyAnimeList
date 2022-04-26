@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 public protocol AppCoordinatorDelegate: AnyObject {
     func gotoWebVC(entity: TopEntity)
@@ -14,9 +15,15 @@ public protocol AppCoordinatorDelegate: AnyObject {
 public final class AppCoordinator: AppCoordinatorDelegate {
     public var rootVC: UIViewController?
     
+    private let managedObjectContext: NSManagedObjectContext?
+    
+    public init(managedObjectContext: NSManagedObjectContext) {
+        self.managedObjectContext = managedObjectContext
+    }
+    
     public func start() {
         let loadDataLoader = RemoteDataLoader()
-        let repository = MainTopListRepository(loadDataLoader: loadDataLoader)
+        let repository = MainTopListRepository(loadDataLoader: loadDataLoader, managedObjectContext: managedObjectContext)
         //Mock
 //        let repository = TopListMockRepository()
         let usecase = MainTopListUseCase(repository: repository)

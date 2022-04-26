@@ -137,6 +137,9 @@ extension TopListViewModel {
         self.listData.value?[firstIndex].isFavorite = entity.isFavorite
         
         //TODO: local list update
+        self.usecase?.updateFavoriteTop(entity: entity)
+        let local = self.usecase?.getLocalTopData()
+        print("local:\(local)")
     }
 }
 

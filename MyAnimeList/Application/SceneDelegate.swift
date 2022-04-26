@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
-        self.appCoordinator = AppCoordinator()
+        self.appCoordinator = AppCoordinator(managedObjectContext: self.persistentContainer.viewContext)
         self.appCoordinator?.start()
         self.window?.rootViewController = self.appCoordinator?.rootVC
         window?.makeKeyAndVisible()
