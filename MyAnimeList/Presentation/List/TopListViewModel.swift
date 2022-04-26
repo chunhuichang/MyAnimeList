@@ -115,6 +115,7 @@ extension TopListViewModel {
         } else {
             self.subtypeData.value = nil
             self.isSubTypeHidden.value = true
+            self.listData.value = self.usecase?.getLocalTopData()
         }
     }
     
@@ -136,10 +137,11 @@ extension TopListViewModel {
         guard let tmpListData = self.listData.value, let firstIndex = tmpListData.firstIndex(where: {$0.malID == entity.malID}) else { return }
         self.listData.value?[firstIndex].isFavorite = entity.isFavorite
         
-        //TODO: local list update
         self.usecase?.updateFavoriteTop(entity: entity)
-        let local = self.usecase?.getLocalTopData()
-        print("local:\(local)")
+        // in favorite list, refresh data
+        if self.subtypeData.value == nil {
+            self.listData.value = self.usecase?.getLocalTopData()
+        }
     }
 }
 
