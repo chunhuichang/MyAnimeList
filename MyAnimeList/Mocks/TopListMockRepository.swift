@@ -20,7 +20,7 @@ final class TopListMockRepository: TopListRepository {
         localEntities
     }
     
-    func saveFavoriteTop(entity: TopEntity) {
+    func updateFavoriteTop(entity: TopEntity) {
         if var localEntity = localEntities?.first(where: { $0.malID == entity.malID }) {
             localEntity.isFavorite = entity.isFavorite
         }

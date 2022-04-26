@@ -25,7 +25,7 @@ class MyAnimeListViewModelTests: XCTestCase {
         }
         
         // TODO: how to test save or update event
-        func saveFavoriteTop(entity: TopEntity) {
+        func updateFavoriteTop(entity: TopEntity) {
             //            if localTopData == nil {
             //                localTopData = [TopEntity]()
             //            }

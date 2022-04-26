@@ -12,5 +12,5 @@ public protocol TopListRepository {
     
     func getLocalTopData() -> [TopEntity]?
     
-    func saveFavoriteTop(entity: TopEntity)
+    func updateFavoriteTop(entity: TopEntity)
 }

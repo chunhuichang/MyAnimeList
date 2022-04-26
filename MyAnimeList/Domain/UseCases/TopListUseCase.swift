@@ -12,7 +12,7 @@ public protocol TopListUseCase {
     
     func getLocalTopData() -> [TopEntity]?
     
-    func saveFavoriteTop(entity: TopEntity)
+    func updateFavoriteTop(entity: TopEntity)
 }
 public final class MainTopListUseCase: TopListUseCase {
     public let repository: TopListRepository
@@ -56,7 +56,7 @@ public final class MainTopListUseCase: TopListUseCase {
         self.repository.getLocalTopData()
     }
     
-    public func saveFavoriteTop(entity: TopEntity) {
-        self.repository.saveFavoriteTop(entity: entity)
+    public func updateFavoriteTop(entity: TopEntity) {
+        self.repository.updateFavoriteTop(entity: entity)
     }
 }

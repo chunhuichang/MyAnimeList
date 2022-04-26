@@ -98,7 +98,7 @@ extension TopListViewModel {
         saveDataTrigger.binding(trigger: false) { [weak self] newValue, _ in
             guard let self = self, let entity = newValue else { return }
             
-            self.usecase?.saveFavoriteTop(entity: entity)
+            self.usecase?.updateFavoriteTop(entity: entity)
             // TODO: listData also change isFavorite flag
         }
     }
