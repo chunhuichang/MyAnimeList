@@ -70,6 +70,20 @@ class TopListViewController: UIViewController {
         self.viewModel.output.typeClick(index: sender.tag)
     }
     
+    private lazy var loadingActivity: UIActivityIndicatorView = {
+        let loadingActivity = UIActivityIndicatorView()
+        loadingActivity.hidesWhenStopped = true
+        loadingActivity.style = .large
+        loadingActivity.color = .white
+        loadingActivity.backgroundColor = .darkGray
+        loadingActivity.layer.cornerRadius = 10
+        return loadingActivity
+    }()
+    
+    private lazy var loadingView: UIView = {
+        return UIView()
+    }()
+    
     init(viewModel: TopListVMManager, posterImagesRepository: PosterImagesRepository) {
         self.viewModel = viewModel
         self.posterImagesRepository = posterImagesRepository
@@ -94,7 +108,7 @@ private extension TopListViewController {
     private func setupUI() {
         self.view.backgroundColor = .white
         
-        [topStackView, subtypeCollectionView, listCollectionView].forEach { [superView = self.view] in
+        [topStackView, subtypeCollectionView, listCollectionView, loadingActivity, loadingView].forEach { [superView = self.view] in
             superView?.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -114,7 +128,27 @@ private extension TopListViewController {
             listCollectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             listCollectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             listCollectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            
+            loadingActivity.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            loadingActivity.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            loadingActivity.widthAnchor.constraint(equalToConstant: 80),
+            loadingActivity.heightAnchor.constraint(equalTo: loadingActivity.widthAnchor),
+            
+            loadingView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
         ])
+    }
+    
+    private func showActivityIndicator(_ show: Bool) {
+        if show {
+            loadingActivity.startAnimating()
+            loadingView.isHidden = false
+        } else {
+            loadingActivity.stopAnimating()
+            loadingView.isHidden = true
+        }
     }
 }
 
@@ -125,12 +159,12 @@ private extension TopListViewController {
         
         let output = self.viewModel.output
 
-//        output.isLoading.binding {[weak self] newValue, _ in
-//            guard let self = self else { return }
-//            DispatchQueue.main.async {
-//                self.currentTimeZoneLabel.text = newValue
-//            }
-//        }
+        output.isLoading.binding {[weak self] newValue, _ in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.showActivityIndicator(newValue ?? false)
+            }
+        }
                 
         output.isSubTypeHidden.binding {[weak self] newValue, _ in
             guard let self = self else { return }

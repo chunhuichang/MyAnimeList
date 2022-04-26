@@ -35,15 +35,14 @@ class WebViewController: UIViewController {
         let webLoadingActivity = UIActivityIndicatorView()
         webLoadingActivity.hidesWhenStopped = true
         webLoadingActivity.style = .large
+        webLoadingActivity.color = .white
+        webLoadingActivity.backgroundColor = .darkGray
+        webLoadingActivity.layer.cornerRadius = 10
         return webLoadingActivity
     }()
     
     private lazy var webLoadingActivityContainer: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        view.alpha = 0.8
-        view.layer.cornerRadius = 10
-        return view
+        return UIView()
     }()
     
     init(viewModel: WebViewModel) {
@@ -92,11 +91,13 @@ private extension WebViewController {
             
             webLoadingActivity.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             webLoadingActivity.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            webLoadingActivity.widthAnchor.constraint(equalToConstant: 80),
+            webLoadingActivity.heightAnchor.constraint(equalTo: webLoadingActivity.widthAnchor),
             
-            webLoadingActivityContainer.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            webLoadingActivityContainer.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            webLoadingActivityContainer.widthAnchor.constraint(equalToConstant: 80),
-            webLoadingActivityContainer.heightAnchor.constraint(equalToConstant: 80),
+            webLoadingActivityContainer.topAnchor.constraint(equalTo: self.view.topAnchor),
+            webLoadingActivityContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            webLoadingActivityContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            webLoadingActivityContainer.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
         ])
     }
     
