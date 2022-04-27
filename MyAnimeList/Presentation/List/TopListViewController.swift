@@ -221,6 +221,15 @@ extension TopListViewController: UICollectionViewDelegate {
             self.viewModel.output.gotoWebVC(entity: cellVM)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard collectionView == self.listCollectionView, !self.subtypeCollectionView.isHidden,
+              indexPath.row == (self.viewModel.output.listData.value?.count ?? 0) - 1 else {
+                  return
+              }
+        
+        self.viewModel.input.fetchDataTrigger.value = ()
+    }
 }
 
 extension TopListViewController: UICollectionViewDataSource {

@@ -88,7 +88,7 @@ extension TopListViewModel {
                 self.isLoading.value = false
                 switch result {
                 case .success(let entities):
-                    self.listData.value = entities
+                    self.listData.value?.append(contentsOf: entities)
                     self.page += 1
                     
                 case.failure(let error):
@@ -118,6 +118,7 @@ extension TopListViewModel {
         } else {
             self.subtypeData.value = nil
             self.isSubTypeHidden.value = true
+            self.scrollToTop.value = ()
             self.listData.value = self.usecase?.getLocalTopData()
         }
     }
@@ -127,12 +128,13 @@ extension TopListViewModel {
             return
         }
         self.subtypeIndex = index
-        self.page = 0
+        self.page = 1
         self.scrollToTop.value = ()
         tmpSubtypeData = tmpSubtypeData.map{ ($0.0,false) }
         tmpSubtypeData[index].1 = true
         
         self.subtypeData.value = tmpSubtypeData
+        self.listData.value = [TopEntity]()
         self.fetchDataTrigger.value = ()
     }
     

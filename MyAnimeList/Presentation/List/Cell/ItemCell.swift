@@ -116,7 +116,7 @@ class ItemCell: UICollectionViewCell {
             dateDetailStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             rankLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            rankLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/4),
+            rankLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 2/5),
             rankLabel.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -10),
             
             starButton.widthAnchor.constraint(equalToConstant: 30),
