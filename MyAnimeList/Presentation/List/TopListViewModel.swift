@@ -26,6 +26,7 @@ public protocol TopListVMOutput {
     var listData: Box<[TopEntity]> { get }
     var typeIndex: Box<Int> { get }
     var scrollToTop: Box<()> { get }
+    var scrollToLeft: Box<()> { get }
     var typeNames: [MALTypeEnum] { get }
     func typeClick(index: Int)
     func subtypeClick(index: Int)
@@ -71,6 +72,7 @@ public final class TopListViewModel: TopListVMInput, TopListVMOutput, TopListVMM
     public var listData: Box<[TopEntity]> = Box([TopEntity]())
     public var typeIndex: Box<Int> = Box(nil)
     public var scrollToTop: Box<()> = Box(())
+    public var scrollToLeft: Box<()> = Box(())
 }
 
 extension TopListViewModel {
@@ -110,6 +112,7 @@ extension TopListViewModel {
         self.typeIndex.value = index
         if let subtypes = self.typeSubtype["\(self.typeNames[index])"], !subtypes.isEmpty {
             self.subtypeData.value = subtypes.map { ($0,false) }
+            self.scrollToLeft.value = ()
             self.subtypeClick(index: 0)
             self.isSubTypeHidden.value = false
         } else {

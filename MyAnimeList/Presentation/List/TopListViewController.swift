@@ -203,6 +203,13 @@ private extension TopListViewController {
                 self.listCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
             }
         }
+        
+        output.scrollToLeft.binding {[weak self] _, _ in
+            guard let self = self, let dataCount = self.viewModel.output.subtypeData.value?.count, dataCount > 0 else { return }
+            DispatchQueue.main.async {
+                self.subtypeCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
+            }
+        }
     }
 }
 
