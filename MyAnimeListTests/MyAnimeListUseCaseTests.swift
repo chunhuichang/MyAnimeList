@@ -11,7 +11,7 @@ import Nimble
 
 class MyAnimeListUseCaseTests: XCTestCase {
     
-    private struct MockRepository: TopListRepository {
+    private final class MockRepository: TopListRepository {
         func fetchTop(queryString: String, with completion: @escaping (Result<[TopEntity], DataLoaderError>) -> Void) {
             guard let result = fetchDataTopResult else {
                 completion(.failure(DataLoaderError.noResponse))
@@ -24,40 +24,86 @@ class MyAnimeListUseCaseTests: XCTestCase {
             localTopData
         }
         
-        // TODO: how to test save or update event
         func updateFavoriteTop(entity: TopEntity) {
-//            if localTopData == nil {
-//                localTopData = [TopEntity]()
-//            }
+            guard var localTopData = localTopData else {
+                return
+            }
+            if entity.isFavorite {
+                localTopData.append(entity)
+                
+            } else {
+                localTopData.removeAll(where: { $0.malID == entity.malID })
+            }
+            self.localTopData = localTopData
         }
         
         var fetchDataTopResult: Result<[TopEntity], DataLoaderError>?
         var localTopData: [TopEntity]?
+        
+        init(fetchDataTopResult: Result<[TopEntity], DataLoaderError>? = nil, localTopData: [TopEntity]? = nil) {
+            self.fetchDataTopResult = fetchDataTopResult
+            self.localTopData = localTopData
+        }
     }
-
-    func test_TopListUseCase__whenSuccessfullyFetch_thenDataIsQuery()  {
+    
+    func test_TopListUseCase__whenSuccessfullyFetchTopApi_thenDataIsQuery()  {
         let predicateFetchEntity = [
             TopEntity(malID: 111, rank: 1, title: "title1", url: "url1", imageURL: "imageURL1", type: "Movie", startDate: "Apr 2017"),
             TopEntity(malID: 222, rank: 3, title: "title2", url: "url2", imageURL: "imageURL2", type: "TV", startDate: "Apr 2015")]
         let predicateLocalEntity = [TopEntity(malID: 111, rank: 1, title: "title1", url: "url1", imageURL: "imageURL1", type: "Movie", startDate: "Apr 2017", isFavorite: true)]
         
         
-        var repository = MockRepository()
-        repository.fetchDataTopResult = .success(predicateFetchEntity)
-        repository.localTopData = predicateLocalEntity
+        let repository = MockRepository(fetchDataTopResult: .success(predicateFetchEntity), localTopData: predicateLocalEntity)
         
         let sut = MainTopListUseCase(repository: repository)
         
         sut.fetchTop(queryString: "") { result in
             switch result {
-                case .success(let entities):
+            case .success(let entities):
                 expect(entities.count) == predicateFetchEntity.count
                 expect(entities[0].malID) == predicateFetchEntity[0].malID
                 expect(entities[0].isFavorite) == predicateLocalEntity[0].isFavorite
-                case .failure:
-                    XCTFail("fetchTop failure")
+            case .failure:
+                XCTFail("fetchTop failure")
             }
         }
+    }
+    
+    func test_TopListUseCase__whenSuccessfullyFetchLocalData_thenDataIsQuery()  {
+        let predicateLocalEntity = [TopEntity(malID: 111, rank: 1, title: "title1", url: "url1", imageURL: "imageURL1", type: "Movie", startDate: "Apr 2017", isFavorite: true)]
+        
+        let repository = MockRepository(fetchDataTopResult: nil, localTopData: predicateLocalEntity)
+        
+        let sut = MainTopListUseCase(repository: repository)
+        
+        let result = sut.getLocalTopData()
+        expect(result?.count) == predicateLocalEntity.count
+        expect(result?[0].malID) == predicateLocalEntity[0].malID
+        expect(result?[0].isFavorite) == predicateLocalEntity[0].isFavorite
+    }
+    
+    func test_TopListUseCase__whenUpdateLocalData_thenDataIsInsert()  {
+        let predicateLocalEntity = [TopEntity(malID: 111, rank: 1, title: "title1", url: "url1", imageURL: "imageURL1", type: "Movie", startDate: "Apr 2017", isFavorite: true)]
+        
+        let repository = MockRepository(fetchDataTopResult: nil, localTopData: predicateLocalEntity)
+        
+        let sut = MainTopListUseCase(repository: repository)
+        sut.updateFavoriteTop(entity: TopEntity(malID: 555, rank: 1, title: "title1", url: "url1", imageURL: "imageURL1", type: "Movie", startDate: "Apr 2017", isFavorite: true))
+        
+        let result = sut.getLocalTopData()
+        expect(result?.count) == 2
+    }
+    
+    func test_TopListUseCase__whenUpdateLocalData_thenDataIsDelete()  {
+        let predicateLocalEntity = [TopEntity(malID: 111, rank: 1, title: "title1", url: "url1", imageURL: "imageURL1", type: "Movie", startDate: "Apr 2017", isFavorite: true)]
+        
+        let repository = MockRepository(fetchDataTopResult: nil, localTopData: predicateLocalEntity)
+        
+        let sut = MainTopListUseCase(repository: repository)
+        sut.updateFavoriteTop(entity: TopEntity(malID: 111, rank: 1, title: "title1", url: "url1", imageURL: "imageURL1", type: "Movie", startDate: "Apr 2017", isFavorite: false))
+        
+        let result = sut.getLocalTopData()
+        expect(result?.count) == 0
     }
     
     func test_TOPJsonString() {
