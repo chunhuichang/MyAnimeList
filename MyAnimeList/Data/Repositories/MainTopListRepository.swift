@@ -59,7 +59,7 @@ public final class MainTopListRepository: TopListRepository {
         return result
     }
     
-    public func saveFavoriteTop(entity: TopEntity) {
+    private func saveFavoriteTop(entity: TopEntity) {
         guard let context = self.managedObjectContext, let insertObj = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context) as? AnimeFavorite else {
             return
         }
@@ -80,7 +80,7 @@ public final class MainTopListRepository: TopListRepository {
         }
     }
     
-    public func deleteFavoriteTop(entity: TopEntity) {
+    private func deleteFavoriteTop(entity: TopEntity) {
         guard let context = self.managedObjectContext else {
             return
         }
