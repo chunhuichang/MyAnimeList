@@ -26,9 +26,7 @@ public final class MainPosterImagesRepository: PosterImagesRepository {
                 completion(.failure(.noResponse))
                 return
             }
-            DispatchQueue.main.async() {
-                completion(.success(data))
-            }
+            completion(.success(data))
         }
     }
 }

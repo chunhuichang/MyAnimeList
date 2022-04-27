@@ -143,28 +143,34 @@ extension ItemCell {
         if let vm = self.viewModel {
             vm.entity.binding(listener: { [weak self] (newValue, _) in
                 guard let self = self, let entity = newValue else { return }
-                self.titleLabel.text = entity.title
-                self.rankLabel.text = "# \(entity.rank)"
-                self.starButton.isSelected = entity.isFavorite
-                self.dateDetails[0].text = entity.startDate
-                
-                if let endDate = entity.endDate {
-                    self.dateDetails[1].text = endDate
-                } else {
-                    self.dateDetails[1].text = ""
+                DispatchQueue.main.async {
+                    self.titleLabel.text = entity.title
+                    self.rankLabel.text = "# \(entity.rank)"
+                    self.starButton.isSelected = entity.isFavorite
+                    self.dateDetails[0].text = entity.startDate
+                    
+                    if let endDate = entity.endDate {
+                        self.dateDetails[1].text = endDate
+                    } else {
+                        self.dateDetails[1].text = ""
+                    }
                 }
             })
             
             vm.imageData.binding(listener: { [weak self] (newValue, _) in
                 guard let self = self else { return }
-                self.imageView.image = nil
-                guard let data = newValue else { return }
-                self.imageView.image = UIImage(data: data)
+                DispatchQueue.main.async {
+                    self.imageView.image = nil
+                    guard let data = newValue else { return }
+                    self.imageView.image = UIImage(data: data)
+                }
             })
             
             vm.isFavorite.binding(listener: { [weak self] (newValue, _) in
                 guard let self = self else { return }
-                self.starButton.isSelected = (newValue ?? false)
+                DispatchQueue.main.async {
+                    self.starButton.isSelected = (newValue ?? false)
+                }
             })
         }
     }

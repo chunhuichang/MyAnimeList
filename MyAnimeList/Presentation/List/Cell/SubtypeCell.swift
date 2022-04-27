@@ -41,9 +41,10 @@ class SubtypeCell: UICollectionViewCell {
     }
     
     func setupCell(_ subtype: String, isSelected: Bool = false) {
-        label.text = subtype
-        self.backgroundColor = isSelected ? .systemPink : .clear
-        
+        DispatchQueue.main.async {
+            self.label.text = subtype
+            self.backgroundColor = isSelected ? .systemPink : .clear
+        }
     }
 }
 
