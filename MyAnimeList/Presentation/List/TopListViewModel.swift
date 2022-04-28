@@ -17,6 +17,9 @@ public enum MALTypeEnum: String {
 public protocol TopListVMInput {
     var fetchDataTrigger: Box<()> { get }
     var saveDataTrigger: Box<TopEntity> { get }
+    func typeClick(index: Int)
+    func subtypeClick(index: Int)
+    func gotoWebVC(entity: TopEntity)
 }
 // Output
 public protocol TopListVMOutput {
@@ -28,10 +31,6 @@ public protocol TopListVMOutput {
     var scrollToTop: Box<()> { get }
     var scrollToLeft: Box<()> { get }
     var typeNames: [MALTypeEnum] { get }
-    func typeClick(index: Int)
-    func subtypeClick(index: Int)
-    func gotoWebVC(entity: TopEntity)
-    func upadteFavorite(entity: TopEntity)
 }
 // Manager
 public protocol TopListVMManager {
@@ -75,6 +74,7 @@ public final class TopListViewModel: TopListVMInput, TopListVMOutput, TopListVMM
     public var scrollToLeft: Box<()> = Box(())
 }
 
+// MARK: input binding
 extension TopListViewModel {
     private func bindingInOut() {
         fetchDataTrigger.binding(trigger: false) { [weak self]_, _ in
@@ -98,10 +98,19 @@ extension TopListViewModel {
         }
         
         saveDataTrigger.binding(trigger: false) { [weak self] newValue, _ in
-            guard let self = self, let entity = newValue else { return }
+            guard let self = self,
+                  let entity = newValue,
+                  let firstIndex = self.listData.value?.firstIndex(where: {$0.malID == entity.malID}) else {
+                      return
+                  }
             
             self.usecase?.updateFavoriteTop(entity: entity)
-            // TODO: listData also change isFavorite flag
+            // in favorite list, refresh data
+            if self.subtypeData.value == nil {
+                self.listData.value = self.usecase?.getLocalTopData()
+            } else {
+                self.listData.value?[firstIndex].isFavorite = entity.isFavorite
+            }
         }
     }
 }
@@ -136,17 +145,6 @@ extension TopListViewModel {
         self.subtypeData.value = tmpSubtypeData
         self.listData.value = [TopEntity]()
         self.fetchDataTrigger.value = ()
-    }
-    
-    public func upadteFavorite(entity: TopEntity) {
-        guard let tmpListData = self.listData.value, let firstIndex = tmpListData.firstIndex(where: {$0.malID == entity.malID}) else { return }
-        self.listData.value?[firstIndex].isFavorite = entity.isFavorite
-        
-        self.usecase?.updateFavoriteTop(entity: entity)
-        // in favorite list, refresh data
-        if self.subtypeData.value == nil {
-            self.listData.value = self.usecase?.getLocalTopData()
-        }
     }
 }
 

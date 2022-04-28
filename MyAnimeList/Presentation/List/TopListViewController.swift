@@ -67,7 +67,7 @@ class TopListViewController: UIViewController {
     }()
         
     @objc private func selected(_ sender: UIButton) {
-        self.viewModel.output.typeClick(index: sender.tag)
+        self.viewModel.input.typeClick(index: sender.tag)
     }
     
     private lazy var loadingActivity: UIActivityIndicatorView = {
@@ -99,7 +99,7 @@ class TopListViewController: UIViewController {
 
         self.setupUI()
         self.UIBinding()
-        self.viewModel.output.typeClick(index: 0)
+        self.viewModel.input.typeClick(index: 0)
     }
 }
 
@@ -216,9 +216,9 @@ private extension TopListViewController {
 extension TopListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.subtypeCollectionView {
-            self.viewModel.output.subtypeClick(index: indexPath.row)
+            self.viewModel.input.subtypeClick(index: indexPath.row)
         } else if collectionView == self.listCollectionView, let cellVM = self.viewModel.output.listData.value?[indexPath.row] {
-            self.viewModel.output.gotoWebVC(entity: cellVM)
+            self.viewModel.input.gotoWebVC(entity: cellVM)
         }
     }
     
@@ -252,7 +252,7 @@ extension TopListViewController: UICollectionViewDataSource {
             let vm = ItemCellVM(entity: cellVM, posterImagesRepository: self.posterImagesRepository)
             cell.setupCell(viewModel: vm) { [weak self] entity in
                 guard let self = self, let entity = entity else { return }
-                self.viewModel.output.upadteFavorite(entity: entity)
+                self.viewModel.input.saveDataTrigger.value = entity
             }
             return cell
         } else if collectionView == self.subtypeCollectionView {

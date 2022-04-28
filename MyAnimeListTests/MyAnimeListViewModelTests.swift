@@ -48,7 +48,7 @@ class MyAnimeListViewModelTests: XCTestCase {
         let sut = makeSUT(usecase: usecase)
         sut.subtypeData.value = [("airing",  true),("upcoming", false)]
         
-        sut.listData.binding(trigger: false) { newValue, _ in
+        sut.output.listData.binding(trigger: false) { newValue, _ in
             if let entities = newValue {
                 expect(entities.count) == predicateFetchEntity.count
                 expect(entities[0].malID) == predicateFetchEntity[0].malID
