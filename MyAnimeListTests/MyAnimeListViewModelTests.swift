@@ -11,7 +11,7 @@ import Nimble
 
 class MyAnimeListViewModelTests: XCTestCase {
     
-    private struct MockUseCase: TopListUseCase {
+    private class MockUseCase: TopListUseCase {
         func fetchTop(queryString: String, with completion: @escaping (Result<[TopEntity], DataLoaderError>) -> Void) {
             guard let result = fetchDataTopResult else {
                 completion(.failure(DataLoaderError.noResponse))
@@ -24,29 +24,37 @@ class MyAnimeListViewModelTests: XCTestCase {
             localTopData
         }
         
-        // TODO: how to test save or update event
         func updateFavoriteTop(entity: TopEntity) {
-            //            if localTopData == nil {
-            //                localTopData = [TopEntity]()
-            //            }
+            guard var localTopData = localTopData else {
+                return
+            }
+            if entity.isFavorite {
+                localTopData.append(entity)
+                
+            } else {
+                localTopData.removeAll(where: { $0.malID == entity.malID })
+            }
+            self.localTopData = localTopData
         }
         
         var fetchDataTopResult: Result<[TopEntity], DataLoaderError>?
         var localTopData: [TopEntity]?
+        
+        init(fetchDataTopResult: Result<[TopEntity], DataLoaderError>? = nil, localTopData: [TopEntity]? = nil) {
+            self.fetchDataTopResult = fetchDataTopResult
+            self.localTopData = localTopData
+        }
     }
     
     func test_TopListVM__whenFetchDataTrigger_thenListDataChange() {
         let predicateFetchEntity = [
             TopEntity(malID: 111, rank: 1, title: "title1", url: "url1", imageURL: "imageURL1", type: "Movie", startDate: "Apr 2017", isFavorite: true),
             TopEntity(malID: 222, rank: 3, title: "title2", url: "url2", imageURL: "imageURL2", type: "TV", startDate: "Apr 2015")]
-        let predicateLocalEntity = [TopEntity(malID: 111, rank: 1, title: "title1", url: "url1", imageURL: "imageURL1", type: "Movie", startDate: "Apr 2017", isFavorite: true)]
         
-        var usecase = MockUseCase()
-        usecase.fetchDataTopResult = .success(predicateFetchEntity)
-        usecase.localTopData = predicateLocalEntity
+        let usecase = MockUseCase(fetchDataTopResult: .success(predicateFetchEntity), localTopData: nil)
         
         let sut = makeSUT(usecase: usecase)
-        sut.subtypeData.value = [("airing",  true),("upcoming", false)]
+        sut.output.subtypeData.value = [("airing",  true),("upcoming", false)]
         
         sut.output.listData.binding(trigger: false) { newValue, _ in
             if let entities = newValue {
@@ -92,17 +100,14 @@ class MyAnimeListViewModelTests: XCTestCase {
         let predicateFetchEntity = [
             TopEntity(malID: 111, rank: 1, title: "title1", url: "url1", imageURL: "imageURL1", type: "Movie", startDate: "Apr 2017", isFavorite: true),
             TopEntity(malID: 222, rank: 3, title: "title2", url: "url2", imageURL: "imageURL2", type: "TV", startDate: "Apr 2015")]
-        let predicateLocalEntity = [TopEntity(malID: 111, rank: 1, title: "title1", url: "url1", imageURL: "imageURL1", type: "Movie", startDate: "Apr 2017", isFavorite: true)]
         
-        var usecase = MockUseCase()
-        usecase.fetchDataTopResult = .success(predicateFetchEntity)
-        usecase.localTopData = predicateLocalEntity
+        let usecase = MockUseCase(fetchDataTopResult: .success(predicateFetchEntity), localTopData: nil)
         
         let sut = makeSUT(usecase: usecase)
         
         let typeClickIndex = 1
         
-        sut.typeIndex.binding(trigger: false) { newValue, _ in
+        sut.output.typeIndex.binding(trigger: false) { newValue, _ in
             if let index = newValue {
                 expect(index) == typeClickIndex
             } else {
@@ -110,7 +115,7 @@ class MyAnimeListViewModelTests: XCTestCase {
             }
         }
         
-        sut.subtypeData.binding(trigger: false) { newValue, _ in
+        sut.output.subtypeData.binding(trigger: false) { newValue, _ in
             if let data = newValue {
                 let predicateData = sut.typeSubtype["\(sut.typeNames[typeClickIndex])"]
                 
@@ -120,7 +125,7 @@ class MyAnimeListViewModelTests: XCTestCase {
             }
         }
         
-        sut.typeClick(index: typeClickIndex)
+        sut.input.typeClick(index: typeClickIndex)
     }
     
     private func makeSUT(usecase: MockUseCase) -> TopListViewModel {
