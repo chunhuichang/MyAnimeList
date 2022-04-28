@@ -23,9 +23,9 @@
         "package": "Nimble",
         "repositoryURL": "https://github.com/Quick/Nimble.git",
         "state": {
-          "branch": "main",
-          "revision": "c9101c6d85127a0bf2dca440ad00e58708a75b61",
-          "version": null
+          "branch": null,
+          "revision": "c93f16c25af5770f0d3e6af27c9634640946b068",
+          "version": "9.2.1"
         }
       }
     ]
