@@ -10,7 +10,7 @@ import WebKit
 
 class WebViewController: UIViewController {
     
-    private var viewModel: WebViewModel
+    var viewModel: WebViewModel
     
     private lazy var backButton: UIBarButtonItem = {
         return UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(self.webGoBack))
@@ -74,7 +74,7 @@ private extension WebViewController {
         self.navigationItem.title = "MAL"
         self.navigationItem.leftBarButtonItems = [backButton, nextButton]
         self.navigationItem.rightBarButtonItem = closeButton
-        if let url = URL(string: self.viewModel.urlString) {
+        if let url = URL(string: self.viewModel.entity.url) {
             self.webView.load(URLRequest(url: url))
         }
         
@@ -124,7 +124,7 @@ extension WebViewController {
     }
     
     @objc final private func closeVC() {
-        self.dismiss(animated: true, completion: nil)
+        self.viewModel.gotoListVC()
     }
 }
 

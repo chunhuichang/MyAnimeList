@@ -15,6 +15,10 @@
 		E12EAD2C28094FF5004A78FE /* TopApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD2B28094FF5004A78FE /* TopApi.swift */; };
 		E12EAD34280B045A004A78FE /* PosterImagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD33280B045A004A78FE /* PosterImagesRepository.swift */; };
 		E12EAD36280B0473004A78FE /* MainPosterImagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EAD35280B0473004A78FE /* MainPosterImagesRepository.swift */; };
+		E1AD3F862858623300580913 /* TopListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AD3F852858623300580913 /* TopListCoordinator.swift */; };
+		E1AD401B2867FEE300580913 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AD401A2867FEE200580913 /* AppDIContainer.swift */; };
+		E1AD401D2867FF8500580913 /* TopListSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AD401C2867FF8500580913 /* TopListSceneDIContainer.swift */; };
+		E1AD401F2868024B00580913 /* WebSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AD401E2868024B00580913 /* WebSceneDIContainer.swift */; };
 		E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41942801C12D007DC0BB /* AppDelegate.swift */; };
 		E1EC41972801C12D007DC0BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41962801C12D007DC0BB /* SceneDelegate.swift */; };
 		E1EC41992801C12D007DC0BB /* TopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC41982801C12D007DC0BB /* TopListViewController.swift */; };
@@ -37,7 +41,7 @@
 		E1EDE1422807A6D70095A68D /* TopListMockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1412807A6D70095A68D /* TopListMockRepository.swift */; };
 		E1EDE1442807B5AE0095A68D /* SubtypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1432807B5AE0095A68D /* SubtypeCell.swift */; };
 		E1EDE14A2808F9740095A68D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE1492808F9740095A68D /* AppCoordinator.swift */; };
-		E1EDE14C280900FB0095A68D /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE14B280900FB0095A68D /* DetailCoordinator.swift */; };
+		E1EDE14C280900FB0095A68D /* WebCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EDE14B280900FB0095A68D /* WebCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +70,10 @@
 		E12EAD2B28094FF5004A78FE /* TopApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopApi.swift; sourceTree = "<group>"; };
 		E12EAD33280B045A004A78FE /* PosterImagesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterImagesRepository.swift; sourceTree = "<group>"; };
 		E12EAD35280B0473004A78FE /* MainPosterImagesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPosterImagesRepository.swift; sourceTree = "<group>"; };
+		E1AD3F852858623300580913 /* TopListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListCoordinator.swift; sourceTree = "<group>"; };
+		E1AD401A2867FEE200580913 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
+		E1AD401C2867FF8500580913 /* TopListSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListSceneDIContainer.swift; sourceTree = "<group>"; };
+		E1AD401E2868024B00580913 /* WebSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSceneDIContainer.swift; sourceTree = "<group>"; };
 		E1EC41912801C12D007DC0BB /* MyAnimeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAnimeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EC41942801C12D007DC0BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1EC41962801C12D007DC0BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,7 +99,7 @@
 		E1EDE1412807A6D70095A68D /* TopListMockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListMockRepository.swift; sourceTree = "<group>"; };
 		E1EDE1432807B5AE0095A68D /* SubtypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtypeCell.swift; sourceTree = "<group>"; };
 		E1EDE1492808F9740095A68D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		E1EDE14B280900FB0095A68D /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
+		E1EDE14B280900FB0095A68D /* WebCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +151,16 @@
 				E12EAD2B28094FF5004A78FE /* TopApi.swift */,
 			);
 			path = Api;
+			sourceTree = "<group>";
+		};
+		E1AD40182867FEC800580913 /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				E1AD401A2867FEE200580913 /* AppDIContainer.swift */,
+				E1AD401C2867FF8500580913 /* TopListSceneDIContainer.swift */,
+				E1AD401E2868024B00580913 /* WebSceneDIContainer.swift */,
+			);
+			path = DIContainer;
 			sourceTree = "<group>";
 		};
 		E1EC41882801C12D007DC0BB = {
@@ -200,10 +218,10 @@
 		E1EDE11F2805B0D30095A68D /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				E1AD40182867FEC800580913 /* DIContainer */,
 				E1EC41942801C12D007DC0BB /* AppDelegate.swift */,
 				E1EC41962801C12D007DC0BB /* SceneDelegate.swift */,
 				E1EDE1492808F9740095A68D /* AppCoordinator.swift */,
-				E1EDE14B280900FB0095A68D /* DetailCoordinator.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -284,6 +302,7 @@
 		E1EDE12A2805B3B40095A68D /* List */ = {
 			isa = PBXGroup;
 			children = (
+				E1AD3F852858623300580913 /* TopListCoordinator.swift */,
 				E1EC41982801C12D007DC0BB /* TopListViewController.swift */,
 				E1EDE13F2806C4D80095A68D /* TopListViewModel.swift */,
 				E1EDE12C2805B3DB0095A68D /* Cell */,
@@ -294,6 +313,7 @@
 		E1EDE12B2805B3C30095A68D /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				E1EDE14B280900FB0095A68D /* WebCoordinator.swift */,
 				E1EDE0D428040A090095A68D /* WebViewController.swift */,
 				E12EAD1E28091902004A78FE /* WebViewModel.swift */,
 			);
@@ -495,7 +515,7 @@
 				E12EAD26280936D6004A78FE /* ApiConfig.swift in Sources */,
 				E1EDE1402806C4D80095A68D /* TopListViewModel.swift in Sources */,
 				E12EAD36280B0473004A78FE /* MainPosterImagesRepository.swift in Sources */,
-				E1EDE14C280900FB0095A68D /* DetailCoordinator.swift in Sources */,
+				E1EDE14C280900FB0095A68D /* WebCoordinator.swift in Sources */,
 				E1EDE1362806689F0095A68D /* TopListUseCase.swift in Sources */,
 				E1EDE1422807A6D70095A68D /* TopListMockRepository.swift in Sources */,
 				E1EDE14A2808F9740095A68D /* AppCoordinator.swift in Sources */,
@@ -504,11 +524,15 @@
 				E1EDE134280666870095A68D /* TopListRepository.swift in Sources */,
 				E1EDE0D32803FCD20095A68D /* ItemCell.swift in Sources */,
 				E1EC41992801C12D007DC0BB /* TopListViewController.swift in Sources */,
+				E1AD401F2868024B00580913 /* WebSceneDIContainer.swift in Sources */,
+				E1AD401D2867FF8500580913 /* TopListSceneDIContainer.swift in Sources */,
 				E12EAD34280B045A004A78FE /* PosterImagesRepository.swift in Sources */,
 				E1EDE1292805B3910095A68D /* Box.swift in Sources */,
+				E1AD3F862858623300580913 /* TopListCoordinator.swift in Sources */,
 				E1EC41952801C12D007DC0BB /* AppDelegate.swift in Sources */,
 				E1EC41972801C12D007DC0BB /* SceneDelegate.swift in Sources */,
 				E1EDE12F2805CA520095A68D /* TopEntity.swift in Sources */,
+				E1AD401B2867FEE300580913 /* AppDIContainer.swift in Sources */,
 				E12EAD2428093030004A78FE /* MainTopListRepository.swift in Sources */,
 				E12EAD2928093804004A78FE /* TopDTO+Mapping.swift in Sources */,
 				E1EDE1442807B5AE0095A68D /* SubtypeCell.swift in Sources */,

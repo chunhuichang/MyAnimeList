@@ -153,7 +153,7 @@ class MyAnimeListViewModelTests: XCTestCase {
     func test_TopListVM__whenListItemClick_thenGoToWebView() {
         let usecase = MockUseCase(fetchDataTopResult: nil, localTopData: nil)
         let sut = makeSUT(usecase: usecase)
-        sut.delegate = self
+        sut.coordinatorDelegate = self
         
         let selectedEntity = TopEntity(malID: 111, rank: 1, title: "title1", url: "url1", imageURL: "imageURL1", type: "Movie", startDate: "Apr 2017", isFavorite: true)
         sut.input.gotoWebVC(entity: selectedEntity)
@@ -173,9 +173,8 @@ extension TopEntity: Equatable {
 }
 
 
-extension MyAnimeListViewModelTests: AppCoordinatorDelegate {
+extension MyAnimeListViewModelTests: TopListCoordinatorDelegate {
     func gotoWebVC(entity: TopEntity) {
-        print("jill gotoWebVC:\(entity.malID)")
         self.gotoWebVCEntity = entity
     }
 }

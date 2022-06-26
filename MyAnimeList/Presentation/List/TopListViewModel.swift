@@ -34,13 +34,14 @@ public protocol TopListVMOutput {
 }
 // Manager
 public protocol TopListVMManager {
+    var coordinatorDelegate: TopListCoordinatorDelegate? { get set }
     var input: TopListVMInput { get }
     var output: TopListVMOutput { get }
 }
 
 public final class TopListViewModel: TopListVMInput, TopListVMOutput, TopListVMManager {
     
-    public weak var delegate: AppCoordinatorDelegate?
+    public var coordinatorDelegate: TopListCoordinatorDelegate?
     var usecase: TopListUseCase?
     public var typeNames: [MALTypeEnum] = [.anime, .manga, .favorite]
     let typeSubtype = ["anime":["airing","upcoming","tv","movie","ova","special","bypopularity","favorite"],"manga":["manga","novels","oneshots","doujin","manhwa","manhua","bypopularity","favorite"],"favorite":[]]
@@ -150,6 +151,6 @@ extension TopListViewModel {
 
 extension TopListViewModel {
     public func gotoWebVC(entity: TopEntity) {
-        self.delegate?.gotoWebVC(entity: entity)
+        self.coordinatorDelegate?.gotoWebVC(entity: entity)
     }
 }

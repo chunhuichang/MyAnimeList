@@ -9,7 +9,7 @@ import UIKit
 
 class TopListViewController: UIViewController {
     
-    private var viewModel: TopListVMManager
+    var viewModel: TopListVMManager
     private var posterImagesRepository: PosterImagesRepository?
     
     
@@ -224,7 +224,7 @@ extension TopListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard collectionView == self.listCollectionView, !self.subtypeCollectionView.isHidden,
-              indexPath.row == (self.viewModel.output.listData.value?.count ?? 0) - 1 else {
+              indexPath.row == (self.viewModel.output.listData.value?.count ?? 0) - 8 else {
                   return
               }
         
